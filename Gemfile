@@ -26,12 +26,18 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+# Stores environment variables
+gem 'figaro'
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
 
   # Use pry-rails for debugging
   gem 'pry-rails'
+
+  # Pull in prefilled data from AirTable
+  gem 'airtable'
 end
 
 group :development do
