@@ -1,0 +1,14 @@
+.cards {
+  margin: auto 50px;
+
+  .card {
+    @include aspect-ratio(4, 3);
+    background-color: $card-background-base;
+    border: 6px solid $white-base;
+    border-radius: 20px;
+
+    .list-name {
+      color: $white-base;
+    }
+  }
+}

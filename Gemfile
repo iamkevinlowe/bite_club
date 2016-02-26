@@ -29,6 +29,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Stores environment variables
 gem 'figaro'
 
+# Rails-Assets
+source 'https://rails-assets.org' do
+  # AngularJS components
+  gem 'rails-assets-angular'
+  gem 'rails-assets-angular-resource'
+end
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'

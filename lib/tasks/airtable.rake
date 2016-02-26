@@ -1,17 +1,39 @@
 namespace :airtable do
   desc 'Loads the database from airtable'
 
-  # TODO: This may be sped up by caching all of the records instead of using #find to query AirTable each time
   task load: :environment do
+    Restaurant.delete_all
+    Cuisine.delete_all
+    List.delete_all
+    Neighborhood.delete_all
+
     client = Airtable::Client.new(ENV['airtable_api_key'])
 
-    cuisines_table = client.table(ENV['airtable_app_id'], "Cuisines")
-    lists_table = client.table(ENV['airtable_app_id'], "Lists")
-    neighborhoods_table = client.table(ENV['airtable_app_id'], "Neighborhoods")
+    puts "Getting Airtable tables"
+    puts "  Getting Restaurants table"
     restaurants_table = client.table(ENV['airtable_app_id'], "Restaurants")
+    puts "  Getting Cuisines table"
+    cuisines_table = client.table(ENV['airtable_app_id'], "Cuisines")
+    puts "  Getting Lists table"
+    lists_table = client.table(ENV['airtable_app_id'], "Lists")
+    puts "  Getting Neighborhoods table"
+    neighborhoods_table = client.table(ENV['airtable_app_id'], "Neighborhoods")
+    puts "Finished getting Airtable tables"
 
+    puts "Getting Airtable records"
+    puts "  Getting Restaurants records"
     at_restaurants = restaurants_table.all
+    puts "  Getting Cuisines records"
+    at_cuisines = cuisines_table.all
+    puts "  Getting Lists records"
+    at_lists = lists_table.all
+    puts "  Getting Neighborhoods records"
+    at_neighborhoods = neighborhoods_table.all
+    puts "Finished getting Airtable records"
+
+    puts "Creating local Restaurant records"
     at_restaurants.each do |at_restaurant|
+      puts "Creating Restaurant - #{at_restaurant[:name]}"
       restaurant = Restaurant.new(
         name: at_restaurant[:name],
         description: at_restaurant[:description],
@@ -24,32 +46,32 @@ namespace :airtable do
       )
 
       unless at_restaurant[:cuisine].empty?
-        at_restaurant[:cuisine].each do |cuisine_id|
-          at_cuisine = cuisines_table.find(cuisine_id)
-          restaurant.cuisines.build(
-            name: at_cuisine[:name]
-          )
+        at_restaurant[:cuisine].each do |at_cuisine_id|
+          at_cuisine = at_cuisines.select { |at_cuisine| at_cuisine[:id] == at_cuisine_id }.first
+          puts " Adding Cuisine - #{at_cuisine[:name]}"
+          restaurant.cuisines << Cuisine.find_or_create_by(name: at_cuisine[:name])
         end
       end
 
       unless at_restaurant[:list].empty?
-        at_restaurant[:list].each do |list_id|
-          at_list = lists_table.find(list_id)
-          restaurant.lists.build(
-            name: at_list[:name]
-          )
+        at_restaurant[:list].each do |at_list_id|
+          at_list = at_lists.select { |at_list| at_list[:id] == at_list_id }.first
+          puts "  Adding List - #{at_list[:list_name]}"
+          restaurant.lists << List.find_or_create_by(name: at_list[:list_name])
         end
       end
 
       unless at_restaurant[:neighborhood].empty?
-        at_neighborhood = neighborhoods_table.find(at_restaurant[:neighborhood].first)
-        restaurant.build_neighborhood(
+        at_neighborhood = at_neighborhoods.select { |at_neighborhood| at_neighborhood[:id] == at_restaurant[:neighborhood].first }.first
+        puts "  Adding Neighborhood - #{at_neighborhood[:name]}"
+        restaurant.neighborhood = Neighborhood.find_or_create_by(
           name: at_neighborhood[:name],
           notes: at_neighborhood[:notes]
         )
       end
 
       restaurant.save
+      puts "Finished creating Restaurant"
     end
 
     puts "#{Restaurant.count} restaurants created."
