@@ -1,0 +1,21 @@
+$footer-height: 50px;
+
+main {
+  margin-bottom: $footer-height;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: $footer-height;
+  background-color: $card-background-dark;
+  color: $white-base;
+  opacity: 0;
+  @include transition(opacity ease-in-out 0.5s);
+
+  .content {
+    @include center-content;
+  }
+}

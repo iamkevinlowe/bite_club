@@ -30,11 +30,15 @@
   }
 
   > .content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    @include transform(translate(-50%, -50%));
+    @include center-content;
   }
+}
+
+@mixin center-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  @include transform(translate(-50%, -50%));
 }
 
 @mixin transform($transforms) {
@@ -43,4 +47,12 @@
   -ms-transform: $transforms;
   -o-transform: $transforms;
   transform: $transforms;
+}
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
 }

@@ -20,6 +20,7 @@
 
     init();
 
+    $scope.activeFilter = null;
     $scope.onFilterClick = onFilterClick;
     // TODO: Possible naming issue - list(resource) and theme(in view)
     $scope.lists = [];
@@ -51,6 +52,8 @@
     }
 
     function displayLists(type) {
+      $scope.activeFilter = type;
+
       switch(type) {
         case 'all':
           $scope.lists = cuisines.concat(lists).concat(neighborhoods);

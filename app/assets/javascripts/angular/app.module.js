@@ -6,9 +6,12 @@
     'ngResource'
   ]);
 
+  angular.module('app.directives', []);
+
   // Setting main module
   angular.module('app', [
     'app.landing',
-    'app.resources'
+    'app.resources',
+    'app.directives'
   ]);
 })();
