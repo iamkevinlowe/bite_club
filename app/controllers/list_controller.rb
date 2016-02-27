@@ -1,6 +1,6 @@
 class ListController < ApplicationController
   def index
-    lists = List.all
+    lists = List.includes(:restaurants).all
 
     respond_to do |format|
       format.json { render json: lists }
@@ -8,5 +8,6 @@ class ListController < ApplicationController
   end
 
   def show
+    @list = List.includes(restaurants: [:cuisines, :neighborhood]).find(params[:id])
   end
 end

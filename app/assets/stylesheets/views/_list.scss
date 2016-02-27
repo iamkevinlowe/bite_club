@@ -1,0 +1,31 @@
+.list {
+  .heading {
+    .card {
+      height: 80px;
+      color: $white-base;
+      background-color: $card-background-base;
+      text-align: center;
+
+      .back-arrow {
+        position: absolute;
+        top: 50%;
+        @include transform(translate(0, -50%));
+        padding: 0 10px;
+        font-size: 3rem;
+
+        a {
+          color: $white-base;
+        }
+      }
+
+      .content {
+        @include center-content;
+
+        .list-name {
+          font-size: 4rem;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

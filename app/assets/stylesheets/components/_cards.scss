@@ -1,14 +1,70 @@
+@mixin card {
+  @include aspect-ratio(4, 3);
+  margin: 10px 0;
+  color: $white-base;
+  background-color: $card-background-base;
+  border-radius: 20px;
+
+  @media screen and (max-width: $mobile-max-width) {
+    margin: 5px -10px;
+  }
+}
+
 .cards {
-  margin: auto 50px;
+  margin: 0 40px;
 
   .card {
-    @include aspect-ratio(4, 3);
-    background-color: $card-background-base;
-    border: 6px solid $white-base;
-    border-radius: 20px;
+    @include card;
 
-    .list-name {
-      color: $white-base;
+    .content {
+      @include center-content;
+    }
+  }
+  
+  @media screen and (max-width: $mobile-max-width) {
+    margin: 0 0;
+  }
+
+}
+
+.list-cards {
+  margin: 0 40px;
+
+  .list-card {
+    @include card;
+
+    .list-content {
+      position: absolute;
+      bottom: 0;
+      left: 15px;
+
+      .restaurant-main {
+        font-size: 2rem;
+        font-weight: bold;
+      }
+
+      .restaurant-sub {
+        .neighborhood-name {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $mobile-max-width) {
+    margin: 0 0;
+
+    .list-card {
+      .list-content {
+        .restaurant-main {
+          font-size: 1.5rem;
+          margin-bottom: 0;
+        }
+
+        .restaurant-sub {
+          font-size: 1.2rem;
+        }
+      }
     }
   }
 }

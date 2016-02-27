@@ -18,10 +18,14 @@
 
     <div class="row cards">
       <!-- TODO: Need to add pagination for lists -->
-      <div class="col-xs-6 col-md-4 card" ng-repeat="list in lists">
-        <div class="content">
-          <span class="list-name">{{list.name}}</span>
-        </div>
+      <div class="col-xs-6 col-md-4" ng-repeat="list in lists">
+        <a ng-href="{{list.type}}/{{list.id}}">
+          <div class="card">
+            <div class="content">
+              <span>{{list.name}}</span>
+            </div>
+          </div>
+        </a>
       </div>
     </div>
   </div>

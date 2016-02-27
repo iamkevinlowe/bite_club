@@ -1,0 +1,48 @@
+<!-- <section ng-controller="ListController"> -->
+<section>
+  <div class="list">
+    <div class="row heading">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="back-arrow">
+            <%= link_to :back do %>
+              <span class="glyphicon glyphicon-chevron-left"></span>
+            <% end %>
+          </div>
+          <div class="content">
+            <!-- <span class="list-name">{{list.name}}</span> -->
+            <span class="list-name"><%= @list.name %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row list-cards">
+      <!-- <div class="col-xs-6 col-md-4" ng-repeat="restaurant in list.restaurants"> -->
+      <% @list.restaurants.each do |restaurant| %>
+        <div class="col-xs-6 col-md-4">
+          <!-- <a ng-href="/restaurant/{{restaurant.id}}"> -->
+          <%= link_to restaurant do %>
+            <div class="list-card">
+              <div class="list-content">
+                <!-- <p class="restaurant-main">{{restaurant.name}}</p> -->
+                <p class="restaurant-main"><%= restaurant.name %></p>
+                <p class="restaurant-sub">
+                  <!-- <span class="cuisine-names">{{restaurant.cuisine_names}}</span> -->
+                  <span class="cuisine-names"><%= restaurant.cuisine_names %></span>
+                  <!-- <span ng-if="restaurant.cuisine_names && restaurant.neighborhood_name">&mdash;</span> -->
+                  <% if restaurant.cuisine_names && restaurant.neighborhood_name %>
+                    <span>&mdash;</span>
+                  <% end %>
+                  <!-- <span class="neighborhood-name">{{restaurant.neighborhood_name}}</span> -->
+                  <span class="neighborhood-name"><%= restaurant.neighborhood_name %></span>
+                </p>
+              </div>
+            </div>
+          <!-- </a> -->
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
