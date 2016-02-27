@@ -1,7 +1,9 @@
 (function() {
   angular
     .module('app.directives')
-    .directive('scrollPosition', function($window) {
+    .directive('scrollPosition', ['$window', scrollPosition]);
+
+  function scrollPosition($window) {
       return {
         link: function(scope, element, attrs) {
           var windowEl = angular.element($window);
