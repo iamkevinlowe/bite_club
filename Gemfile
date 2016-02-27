@@ -26,6 +26,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Stores environment variables
 gem 'figaro'
 
+gem 'paperclip', '~> 4.3'
+
 # Rails-Assets
 source 'https://rails-assets.org' do
   # AngularJS components

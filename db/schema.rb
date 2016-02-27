@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160227002206) do
+ActiveRecord::Schema.define(version: 20160227183824) do
 
   create_table "cuisines", force: :cascade do |t|
     t.string   "name"
@@ -41,6 +41,23 @@ ActiveRecord::Schema.define(version: 20160227002206) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "pictures", force: :cascade do |t|
+    t.integer  "cuisine_id"
+    t.integer  "list_id"
+    t.integer  "neighborhood_id"
+    t.integer  "restaurant_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.string   "source_url"
+  end
+
+  add_index "pictures", ["cuisine_id"], name: "index_pictures_on_cuisine_id"
+  add_index "pictures", ["list_id"], name: "index_pictures_on_list_id"
+  add_index "pictures", ["neighborhood_id"], name: "index_pictures_on_neighborhood_id"
+  add_index "pictures", ["restaurant_id"], name: "index_pictures_on_restaurant_id"
 
   create_table "restaurants", force: :cascade do |t|
     t.string   "name"

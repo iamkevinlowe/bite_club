@@ -45,33 +45,70 @@ namespace :airtable do
         opentable_id: at_restaurant[:opentable_id]
       )
 
+      unless at_restaurant[:pictures].empty?
+        puts "  Adding Pictures to Restaurant - #{restaurant[:name]}"
+        at_restaurant[:pictures].each do |at_picture|
+          restaurant.pictures << Picture.find_or_create_by_image(at_picture[:thumbnails][:large][:url])
+        end
+      end
+
       unless at_restaurant[:cuisine].empty?
         at_restaurant[:cuisine].each do |at_cuisine_id|
           at_cuisine = at_cuisines.select { |at_cuisine| at_cuisine[:id] == at_cuisine_id }.first
-          puts " Adding Cuisine - #{at_cuisine[:name]}"
-          restaurant.cuisines << Cuisine.find_or_create_by(name: at_cuisine[:name])
+          puts "  Creating Cuisine - #{at_cuisine[:name]}"
+          cuisine = Cuisine.find_or_create_by(name: at_cuisine[:name])
+
+          unless at_cuisine[:icon].empty?
+            puts "  Adding Pictures to Cuisine - #{cuisine[:name]}"
+            at_cuisine[:icon].each do |at_picture|
+              cuisine.picture = Picture.find_or_create_by_image(at_picture[:thumbnails][:large][:url])
+            end
+          end
+
+          puts "  Adding Cuisine - #{cuisine[:name]}"
+          restaurant.cuisines << cuisine
         end
       end
 
       unless at_restaurant[:list].empty?
         at_restaurant[:list].each do |at_list_id|
           at_list = at_lists.select { |at_list| at_list[:id] == at_list_id }.first
-          puts "  Adding List - #{at_list[:list_name]}"
-          restaurant.lists << List.find_or_create_by(name: at_list[:list_name])
+          puts "  Creating List - #{at_list[:list_name]}"
+          list = List.find_or_create_by(name: at_list[:list_name])
+
+          unless at_list[:cover].empty?
+            puts "  Adding Pictures to List - #{list[:name]}"
+            at_list[:cover].each do |at_picture|
+              list.picture = Picture.find_or_create_by_image(at_picture[:thumbnails][:large][:url])
+            end
+          end
+
+          puts "  Adding List - #{list[:name]}"
+          restaurant.lists << list
         end
       end
 
       unless at_restaurant[:neighborhood].empty?
         at_neighborhood = at_neighborhoods.select { |at_neighborhood| at_neighborhood[:id] == at_restaurant[:neighborhood].first }.first
-        puts "  Adding Neighborhood - #{at_neighborhood[:name]}"
-        restaurant.neighborhood = Neighborhood.find_or_create_by(
+        puts "  Creating Neighborhood - #{at_neighborhood[:name]}"
+        neighborhood = Neighborhood.find_or_create_by(
           name: at_neighborhood[:name],
           notes: at_neighborhood[:notes]
         )
+
+        unless at_neighborhood[:pictures].empty?
+          puts "  Adding Pictures to Neighborhood - #{neighborhood[:name]}"
+          at_neighborhood[:pictures].each do |at_picture|
+            neighborhood.pictures << Picture.find_or_create_by_image(at_picture[:thumbnails][:large][:url])
+          end
+        end
+
+        puts "  Adding Neighborhood - #{neighborhood[:name]}"
+        restaurant.neighborhood = neighborhood
       end
 
       restaurant.save
-      puts "Finished creating Restaurant"
+      puts "Finished creating Restaurant - #{restaurant[:name]}"
     end
 
     puts "#{Restaurant.count} restaurants created."

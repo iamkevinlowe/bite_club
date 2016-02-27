@@ -1,6 +1,6 @@
 class ListController < ApplicationController
   def index
-    lists = List.includes(:restaurants).all
+    lists = List.includes(:restaurants, :picture).all
 
     respond_to do |format|
       format.json { render json: lists }

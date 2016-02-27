@@ -20,7 +20,9 @@
       <!-- TODO: Need to add pagination for lists -->
       <div class="col-xs-6 col-md-4" ng-repeat="list in lists">
         <a ng-href="{{list.type}}/{{list.id}}">
-          <div class="card">
+          <img ng-src="{{list.picture_url}}" alt="{{list.name}}" ng-if="list.picture_url">
+
+          <div class="card" ng-if="!list.picture_url">
             <div class="content">
               <span>{{list.name}}</span>
             </div>
