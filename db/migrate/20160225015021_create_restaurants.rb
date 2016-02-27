@@ -9,7 +9,6 @@ class CreateRestaurants < ActiveRecord::Migration
       t.string :yelp_id
       t.string :google_place_id
       t.string :opentable_id
-      t.references :neighborhood, index: true, foreign_key: true
 
       t.timestamps null: false
     end

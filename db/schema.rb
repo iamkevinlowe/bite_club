@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225163335) do
+ActiveRecord::Schema.define(version: 20160227002206) do
 
   create_table "cuisines", force: :cascade do |t|
     t.string   "name"
@@ -51,9 +51,9 @@ ActiveRecord::Schema.define(version: 20160225163335) do
     t.string   "yelp_id"
     t.string   "google_place_id"
     t.string   "opentable_id"
-    t.integer  "neighborhood_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "neighborhood_id"
   end
 
   add_index "restaurants", ["neighborhood_id"], name: "index_restaurants_on_neighborhood_id"
