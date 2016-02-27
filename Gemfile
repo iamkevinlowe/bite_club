@@ -26,6 +26,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Stores environment variables
 gem 'figaro'
 
+# Pull in prefilled data from AirTable
+gem 'airtable'
+
+# Gem to handle picture attachments
 gem 'paperclip', '~> 4.3'
 
 # Rails-Assets
@@ -41,9 +45,6 @@ group :development, :test do
 
   # Use pry-rails for debugging
   gem 'pry-rails'
-
-  # Pull in prefilled data from AirTable
-  gem 'airtable'
 end
 
 group :development do
