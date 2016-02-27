@@ -48,7 +48,9 @@ namespace :airtable do
       unless at_restaurant[:pictures].empty?
         puts "  Adding Pictures to Restaurant - #{restaurant[:name]}"
         at_restaurant[:pictures].each do |at_picture|
-          restaurant.pictures << Picture.find_or_create_by_image(at_picture[:thumbnails][:large][:url])
+          if at_picture[:thumbnails] && at_picture[:thumbnails][:large] && url = at_picture[:thumbnails][:large][:url]
+            restaurant.pictures << Picture.find_or_create_by_image(url)
+          end
         end
       end
 
@@ -61,7 +63,9 @@ namespace :airtable do
           unless at_cuisine[:icon].empty?
             puts "  Adding Pictures to Cuisine - #{cuisine[:name]}"
             at_cuisine[:icon].each do |at_picture|
-              cuisine.picture = Picture.find_or_create_by_image(at_picture[:thumbnails][:large][:url])
+              if at_picture[:thumbnails] && at_picture[:thumbnails][:large] && url = at_picture[:thumbnails][:large][:url]
+                cuisine.picture = Picture.find_or_create_by_image(url)
+              end
             end
           end
 
@@ -79,7 +83,9 @@ namespace :airtable do
           unless at_list[:cover].empty?
             puts "  Adding Pictures to List - #{list[:name]}"
             at_list[:cover].each do |at_picture|
-              list.picture = Picture.find_or_create_by_image(at_picture[:thumbnails][:large][:url])
+              if at_picture[:thumbnails] && at_picture[:thumbnails][:large] && url = at_picture[:thumbnails][:large][:url]
+                list.picture = Picture.find_or_create_by_image(url)
+              end
             end
           end
 
@@ -99,7 +105,9 @@ namespace :airtable do
         unless at_neighborhood[:pictures].empty?
           puts "  Adding Pictures to Neighborhood - #{neighborhood[:name]}"
           at_neighborhood[:pictures].each do |at_picture|
-            neighborhood.pictures << Picture.find_or_create_by_image(at_picture[:thumbnails][:large][:url])
+            if at_picture[:thumbnails] && at_picture[:thumbnails][:large] && url = at_picture[:thumbnails][:large][:url]
+              neighborhood.pictures << Picture.find_or_create_by_image(url)
+            end
           end
         end
 
