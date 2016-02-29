@@ -1,4 +1,4 @@
-<section class="container-fluid" ng-controller="LandingController">
+<section class="container-fluid">
   <div class="hero">
     <div class="headings">
       <h1 class="main">Bite Club</h1>
@@ -9,25 +9,15 @@
   <div class="themes text-center">
     <div class="row filters">
       <div class="col-md-12">
-        <button type="button" class="button-filter" data-filter="all" ng-click="onFilterClick($event)" ng-class="{active: activeFilter == 'all'}">All</button>
-        <button type="button" class="button-filter" data-filter="theme" ng-click="onFilterClick($event)" ng-class="{active: activeFilter == 'theme'}">Theme</button>
-        <button type="button" class="button-filter" data-filter="cuisine" ng-click="onFilterClick($event)" ng-class="{active: activeFilter == 'cuisine'}">Cuisine</button>
-        <button type="button" class="button-filter" data-filter="neighborhood" ng-click="onFilterClick($event)" ng-class="{active: activeFilter == 'neighborhood'}">Neighborhood</button>
+        <%= button_tag "All", class: 'button-filter', data: { filter: 'all' } %>
+        <%= button_tag "Theme", class: 'button-filter', data: { filter: 'theme' } %>
+        <%= button_tag "Cuisine", class: 'button-filter', data: { filter: 'cuisine' } %>
+        <%= button_tag "Neighborhood", class: 'button-filter', data: { filter: 'neighborhood' } %>
       </div>
     </div>
 
     <div class="row cards">
       <!-- TODO: Need to add pagination for lists -->
-      <div class="col-xs-6 col-md-4" ng-repeat="list in lists">
-        <a ng-href="{{list.type}}/{{list.id}}">
-          <div class="card" ng-style="{'background-image': 'url({{list.picture_url}})'}">
-
-            <div class="content">
-              <span>{{list.name}}</span>
-            </div>
-          </div>
-        </a>
-      </div>
     </div>
   </div>
 </section>

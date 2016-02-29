@@ -1,6 +1,6 @@
 class Restaurant < ActiveRecord::Base
   has_and_belongs_to_many :cuisines
-  has_and_belongs_to_many :lists
+  has_and_belongs_to_many :themes
   belongs_to :neighborhood
   has_many :pictures
 

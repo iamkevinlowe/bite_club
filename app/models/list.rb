@@ -1,4 +1,3 @@
-# TODO: Consider rename of this class
 class List < ActiveRecord::Base
   has_and_belongs_to_many :restaurants
   has_one :picture
@@ -10,7 +9,7 @@ class List < ActiveRecord::Base
 
   def picture_url
     # picture.image.url(:large) if picture
-    picture.source_url if picture
+    picture ? picture.source_url : ""
   end
 
   def as_json(options = {})

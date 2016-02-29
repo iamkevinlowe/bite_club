@@ -9,7 +9,7 @@ class Neighborhood < ActiveRecord::Base
 
   def picture_url
     # pictures.sample.image.url(:large) if pictures.any?
-    pictures.sample.source_url if pictures.any?
+    pictures.any? ? pictures.sample.source_url : ""
   end
 
   def as_json(options = {})
