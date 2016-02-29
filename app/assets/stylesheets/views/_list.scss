@@ -3,7 +3,7 @@
     .card {
       height: 80px;
       color: $white-base;
-      background-color: $card-background-base;
+      background-color: $black-dark;
       text-align: center;
 
       .back-arrow {
@@ -24,6 +24,45 @@
         .list-name {
           font-size: 4rem;
           font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .list-cards {
+
+    .list-card {
+      @include card;
+
+      .list-content {
+        position: absolute;
+        bottom: 0;
+        left: 15px;
+
+        .restaurant-main {
+          font-size: 2rem;
+          font-weight: bold;
+        }
+
+        .restaurant-sub {
+          .neighborhood-name {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: $mobile-max-width) {
+      .list-card {
+        .list-content {
+          .restaurant-main {
+            font-size: 1.5rem;
+            margin-bottom: 0;
+          }
+
+          .restaurant-sub {
+            font-size: 1.2rem;
+          }
         }
       }
     }

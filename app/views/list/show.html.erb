@@ -1,5 +1,5 @@
 <!-- <section ng-controller="ListController"> -->
-<section>
+<section class="container-fluid">
   <div class="list">
     <div class="row heading">
       <div class="col-md-12">
@@ -22,28 +22,23 @@
       <% @list.restaurants.each do |restaurant| %>
         <div class="col-xs-6 col-md-4">
           <!-- <a ng-href="/restaurant/{{restaurant.id}}"> -->
-          <%= link_to restaurant do %>
-            
-            <% if restaurant.picture_url %>
-              <%= image_tag(restaurant.picture_url) %>
-            <% else %>
-              <div class="list-card">
-                <div class="list-content">
-                  <!-- <p class="restaurant-main">{{restaurant.name}}</p> -->
-                  <p class="restaurant-main"><%= restaurant.name %></p>
-                  <p class="restaurant-sub">
-                    <!-- <span class="cuisine-names">{{restaurant.cuisine_names}}</span> -->
-                    <span class="cuisine-names"><%= restaurant.cuisine_names %></span>
-                    <!-- <span ng-if="restaurant.cuisine_names && restaurant.neighborhood_name">&mdash;</span> -->
-                    <% if restaurant.cuisine_names && restaurant.neighborhood_name %>
-                      <span>&mdash;</span>
-                    <% end %>
-                    <!-- <span class="neighborhood-name">{{restaurant.neighborhood_name}}</span> -->
-                    <span class="neighborhood-name"><%= restaurant.neighborhood_name %></span>
-                  </p>
-                </div>
+          <%= link_to restaurant do %> 
+            <div class="list-card" style="background-image: url(<%= restaurant.picture_url %>)">
+              <div class="list-content">
+                <!-- <p class="restaurant-main">{{restaurant.name}}</p> -->
+                <p class="restaurant-main"><%= restaurant.name %></p>
+                <p class="restaurant-sub">
+                  <!-- <span class="cuisine-names">{{restaurant.cuisine_names}}</span> -->
+                  <span class="cuisine-names"><%= restaurant.cuisine_names %></span>
+                  <!-- <span ng-if="restaurant.cuisine_names && restaurant.neighborhood_name">&mdash;</span> -->
+                  <% if restaurant.cuisine_names && restaurant.neighborhood_name %>
+                    <span>&mdash;</span>
+                  <% end %>
+                  <!-- <span class="neighborhood-name">{{restaurant.neighborhood_name}}</span> -->
+                  <span class="neighborhood-name"><%= restaurant.neighborhood_name %></span>
+                </p>
               </div>
-            <% end %>
+            </div>
           <!-- </a> -->
           <% end %>
         </div>

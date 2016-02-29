@@ -2,69 +2,27 @@
   @include aspect-ratio(4, 3);
   margin: 10px 0;
   color: $white-base;
-  background-color: $card-background-base;
+  text-shadow: 1px 1px 10px $black-dark;
+  background-color: $black-dark;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border-radius: 20px;
-
-  @media screen and (max-width: $mobile-max-width) {
-    margin: 5px -10px;
-  }
 }
 
 .cards {
-  margin: 0 40px;
 
   .card {
     @include card;
 
     .content {
       @include center-content;
-    }
-  }
-  
-  @media screen and (max-width: $mobile-max-width) {
-    margin: 0 0;
-  }
+      font-size: 3rem;
 
-}
-
-.list-cards {
-  margin: 0 40px;
-
-  .list-card {
-    @include card;
-
-    .list-content {
-      position: absolute;
-      bottom: 0;
-      left: 15px;
-
-      .restaurant-main {
+      @media screen and (max-width: $mobile-max-width) {
         font-size: 2rem;
-        font-weight: bold;
-      }
-
-      .restaurant-sub {
-        .neighborhood-name {
-          font-weight: bold;
-        }
       }
     }
   }
 
-  @media screen and (max-width: $mobile-max-width) {
-    margin: 0 0;
-
-    .list-card {
-      .list-content {
-        .restaurant-main {
-          font-size: 1.5rem;
-          margin-bottom: 0;
-        }
-
-        .restaurant-sub {
-          font-size: 1.2rem;
-        }
-      }
-    }
-  }
 }

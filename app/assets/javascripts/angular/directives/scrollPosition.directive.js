@@ -8,7 +8,7 @@
       link: function(scope, element, attrs) {
         var windowEl = angular.element($window);
         var handler = function() {
-          if (location.pathname == '/' && windowEl.scrollTop() < 50) {
+          if (location.pathname == '/' && windowEl.scrollTop() < parseInt(element.css('height'))) {
             element.css('opacity', 0);
           } else {
             element.css('opacity', 1);
