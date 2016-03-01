@@ -32,15 +32,11 @@ gem 'figaro'
 # Pull in prefilled data from AirTable
 gem 'airtable'
 
-# Gem to handle picture attachments
+# Handle picture attachments
 gem 'paperclip', '~> 4.3'
 
-# Rails-Assets
-source 'https://rails-assets.org' do
-  # AngularJS components
-  gem 'rails-assets-angular'
-  gem 'rails-assets-angular-resource'
-end
+# Using Yelp API for restaurant info
+gem 'yelp', require: 'yelp'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record

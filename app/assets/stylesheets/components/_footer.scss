@@ -11,7 +11,6 @@ footer {
   right: 0;
   height: $footer-height;
   background-color: $black-dark;
-  color: $white-base;
   opacity: 0;
   @include transition(opacity ease-in-out 0.5s);
 

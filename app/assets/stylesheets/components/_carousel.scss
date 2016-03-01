@@ -1,0 +1,13 @@
+.owl-carousel {
+  margin: 20px 0;
+  
+  .carousel-image {
+    @include aspect-ratio(4, 3);
+    width: 80%;
+    border-radius: 20px;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+}

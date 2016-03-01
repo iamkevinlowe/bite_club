@@ -8,6 +8,6 @@ class ListController < ApplicationController
   end
 
   def show
-    @list = List.includes(restaurants: [:cuisines, :neighborhood]).find(params[:id])
+    @list = List.includes(restaurants: [:cuisines, :neighborhood, :pictures]).find(params[:id])
   end
 end

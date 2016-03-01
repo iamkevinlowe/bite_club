@@ -3,7 +3,6 @@
     .card {
       height: 80px;
       margin: 0 -15px;
-      color: $white-base;
       background-color: $black-dark;
       text-align: center;
 
@@ -13,10 +12,6 @@
         @include transform(translate(0, -50%));
         padding: 0 10px;
         font-size: 3rem;
-
-        a {
-          color: $white-base;
-        }
       }
 
       .content {

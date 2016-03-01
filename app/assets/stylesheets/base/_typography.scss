@@ -1,3 +1,8 @@
-body {
+body, a {
+  color: $white-base;
   font-family: 'Lato';
+}
+
+a:hover {
+  color: $white-dark;
 }

@@ -47,6 +47,13 @@ $(document).on('page:change', function() {
     return card;
   }
 
+  function setButtonActiveClass(elem) {
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].classList.remove('active');
+    }
+    elem.classList.add('active');
+  }
+
   $.when(
     $.ajax({
       method: 'GET',
@@ -76,8 +83,12 @@ $(document).on('page:change', function() {
   var buttons = document.getElementsByClassName('button-filter');
 
   for (var i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener('click', function() {
+    buttons[i].addEventListener('click', function(event) {
+      event.preventDefault();
+      
+      setButtonActiveClass(this);
       filterLists(this.dataset.filter);
     });
   }
+
 });

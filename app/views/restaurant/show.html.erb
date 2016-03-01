@@ -1,1 +1,26 @@
-RESTAURANT VIEW
+<section class="container">
+  <div class="row">
+    <div class="col-md-offset-2 col-md-8">
+      <div class="owl-carousel">
+        <% @restaurant.pictures.each do |picture| %>
+          <div class="carousel-image" style="background-image: url(<%= picture.source_url %>);"></div>
+        <% end %>
+      </div>
+
+      <div class="yelp">
+        <p><%= @restaurant.name %></p>
+        <p><%= @restaurant.neighborhood_name %></p>
+        <p><%= @restaurant.cost %></p>
+        <p><%= @restaurant.description %></p>
+        <div class="yelp-rating"><%= image_tag @yelp_data.rating_img_url %></div>
+        <p>Reservations: <%= @restaurant.reservations ? 'Yes' : 'No' %></p>
+        <p><%= format_phone(@yelp_data.display_phone) %></p>
+        <p>
+          <% @yelp_data.location.display_address.each do |field| %>
+            <%= field %><br/>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

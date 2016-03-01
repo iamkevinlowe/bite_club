@@ -1,7 +1,6 @@
 @mixin card {
   @include aspect-ratio(4, 3);
   margin: 10px 0;
-  color: $white-base;
   text-shadow: 1px 1px 10px $black-dark;
   background-color: $black-dark;
   background-size: cover;
