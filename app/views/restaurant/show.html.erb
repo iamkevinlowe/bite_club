@@ -7,43 +7,31 @@
         <% end %>
       </div>
 
-      <div class="restaurant-details">
-        <p><%= @restaurant.name %></p>
-        <p><%= @restaurant.neighborhood_name %></p>
-        <p><%= @restaurant.cost %></p>
-        <p><%= @restaurant.description %></p>
-        <% if @yelp_info %>
-          <div class="yelp-rating"><%= image_tag @yelp_data.rating_url %></div>
-          <p>Reservations: <%= @restaurant.reservations ? 'Yes' : 'No' %></p>
-          <p><%= @yelp_data.phone %></p>
-          <p><%= @yelp_data.address %></p>
+      <ul class="restaurant-details">
+        <li class="restaurant-neighborhood"><%= @restaurant.neighborhood_name %></li>
+        <li class="restaurant-name"><%= @restaurant.name %></li>
+        <li class="restaurant-cost"><%= @restaurant.cost %></li>
+        <li class="restaurant-description"><%= @restaurant.description %></li>
+        <% if @yelp_data %>
+          <li class="yelp-rating"><%= image_tag(@yelp_data.rating_url) %></li>
+          <li class="restaurant-reservations">Reservations: <%= @restaurant.reservations ? 'Yes' : 'No' %></li>
+          <li class="yelp-phone">
+            <%= browser.device.mobile? ? link_to("Call Us", @yelp_data.phone_mobile) : @yelp_data.phone %>
+          </li>
+          <li class="yelp-address"><%= @yelp_data.address %></li>
         <% end %>
-      </div>
+      </ul>
 
       <div class="restaurant-map" id="map">
       </div>
 
-      <div class="restaurant-instagram owl-carousel">
-        <% @instagram_data.media.each do |media| %>
-          <div class="carousel-image" style="background-image: url(<%= media %>);"></div>
-        <% end %>
-      </div>
+      <% if @instagram_data %>
+        <div class="restaurant-instagram owl-carousel">
+          <% @instagram_data.media.each do |media| %>
+            <div class="carousel-image" style="background-image: url(<%= media %>);"></div>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 </section>
-
-<script>
-  function initMap() {
-    var map = new google.maps.Map(document.getElementById('map'), {
-      center: <%= @yelp_data.coordinate %>,
-      zoom: 14
-    });
-
-    var marker = new google.maps.Marker({
-      position: <%= @yelp_data.coordinate %>,
-      map: map,
-      title: "<%= @restaurant.name %>"
-    });
-  }
-</script>
-

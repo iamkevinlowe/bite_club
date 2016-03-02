@@ -12,6 +12,7 @@ footer {
   height: $footer-height;
   background-color: $black-dark;
   opacity: 0;
+  z-index: 2;
   @include transition(opacity ease-in-out 0.5s);
 
   .content {

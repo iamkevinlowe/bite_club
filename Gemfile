@@ -32,6 +32,7 @@ gem 'figaro'
 # Pull in prefilled data from AirTable
 gem 'airtable'
 
+# TODO: Might not need if sourcing photos from airtable
 # Handle picture attachments
 gem 'paperclip', '~> 4.3'
 
@@ -41,6 +42,9 @@ gem 'yelp', '2.0.5', require: 'yelp'
 
 # Use Instagram API for restaurant carousel
 gem 'instagram'
+
+# Use Browser gem for device detection
+gem 'browser'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record

@@ -35,5 +35,9 @@
 
   .filters {
     margin: 50px auto;
+
+    @media screen and (max-width: $mobile-max-width) {
+      margin: 30px auto;
+    }
   }
 }

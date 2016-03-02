@@ -47,6 +47,8 @@ $(document).on('page:change', function() {
     return card;
   }
 
+  var buttons = document.getElementsByClassName('button-filter');
+
   function setButtonActiveClass(elem) {
     for (var i = 0; i < buttons.length; i++) {
       buttons[i].classList.remove('active');
@@ -79,8 +81,6 @@ $(document).on('page:change', function() {
   ).then(function() {
     filterLists('all');
   });
-
-  var buttons = document.getElementsByClassName('button-filter');
 
   for (var i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener('click', function(event) {

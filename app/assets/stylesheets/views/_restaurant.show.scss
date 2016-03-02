@@ -1,6 +1,39 @@
 .restaurant.show {
+  .restaurant-details {
+    list-style: none;
+    font-size: 2rem;
+    
+    li {
+      padding: 10px;
+    }
+
+    .restaurant-name {
+      font-size: 5rem;
+    }
+
+    .restaurant-neighborhood {
+      float: right;
+      font-size: 3rem;
+    }
+
+    @media screen and (max-width: $mobile-max-width) {
+      margin-left: -40px;
+
+      li {
+        padding: 5px;
+      }
+
+      .restaurant-name {
+        font-size: 3rem;
+      }
+
+      .restaurant-neighborhood {
+        font-size: 1.8rem;
+      }
+    }
+  }
+
   .restaurant-map {
     @include aspect-ratio(16, 9);
-    background-color: $white-dark;
   }
 }

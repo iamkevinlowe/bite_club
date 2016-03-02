@@ -4,4 +4,10 @@
   margin: 0 10px;
   padding: 10px 20px;
   font-size: 2rem;
+
+  @media screen and (max-width: $mobile-max-width) {
+    margin: 0 4px;
+    padding: 6px 12px;
+    font-size: 1.4rem;
+  }
 }
