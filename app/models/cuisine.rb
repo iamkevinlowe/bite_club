@@ -7,9 +7,9 @@ class Cuisine < ActiveRecord::Base
     self.class.name.downcase
   end
 
-  def picture_url
+  def picture_url(size = 'small')
     # picture.image.url(:large) if picture
-    picture ? picture.source_url : ""
+    picture.nil? ? "" : size == 'small' ? picture.thumb_url : picture.source_url
   end
 
   def as_json(options = {})

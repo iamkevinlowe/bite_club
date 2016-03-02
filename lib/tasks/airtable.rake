@@ -6,6 +6,7 @@ namespace :airtable do
     Cuisine.delete_all
     List.delete_all
     Neighborhood.delete_all
+    Picture.delete_all
 
     client = Airtable::Client.new(ENV['airtable_api_key'])
 
@@ -35,22 +36,22 @@ namespace :airtable do
     at_restaurants.each do |at_restaurant|
       puts "Creating Restaurant - #{at_restaurant[:name]}"
       restaurant = Restaurant.new(
-        name: at_restaurant[:name],
-        description: at_restaurant[:description],
-        cost: at_restaurant[:cost],
+        name: at_restaurant[:name].empty? ? nil : at_restaurant[:name],
+        description: at_restaurant[:description].empty? ? nil : at_restaurant[:description],
+        cost: at_restaurant[:cost].empty? ? nil : at_restaurant[:cost],
         reservations: at_restaurant[:reservations] == true ? true : false,
-        instagram: at_restaurant[:instagram],
-        yelp_id: at_restaurant[:yelp_id],
-        google_place_id: at_restaurant[:google_place_id],
-        opentable_id: at_restaurant[:opentable_id]
+        instagram: at_restaurant[:instagram].empty? ? nil : at_restaurant[:instagram].gsub('#', ''),
+        yelp_id: at_restaurant[:yelp_id].empty? ? nil : at_restaurant[:yelp_id],
+        google_place_id: at_restaurant[:google_place_id].empty? ? nil : at_restaurant[:google_place_id],
+        opentable_id: at_restaurant[:opentable_id].empty? ? nil : at_restaurant[:opentable_id]
       )
 
       unless at_restaurant[:pictures].empty?
         puts "  Adding Pictures to Restaurant - #{restaurant[:name]}"
         at_restaurant[:pictures].each do |at_picture|
-          if at_picture[:thumbnails] && at_picture[:thumbnails][:large] && url = at_picture[:thumbnails][:large][:url]
-            restaurant.pictures << Picture.find_or_create_by_image(url)
-          end
+          orig_url = at_picture[:url]
+          thumb_url = at_picture[:thumbnails][:large][:url] if at_picture[:thumbnails] && at_picture[:thumbnails][:large]
+          restaurant.pictures << Picture.find_or_create_by_image(orig_url, thumb_url)
         end
       end
 
@@ -63,9 +64,9 @@ namespace :airtable do
           unless at_cuisine[:icon].empty?
             puts "  Adding Pictures to Cuisine - #{cuisine[:name]}"
             at_cuisine[:icon].each do |at_picture|
-              if at_picture[:thumbnails] && at_picture[:thumbnails][:large] && url = at_picture[:thumbnails][:large][:url]
-                cuisine.picture = Picture.find_or_create_by_image(url)
-              end
+              orig_url = at_picture[:url]
+              thumb_url = at_picture[:thumbnails][:large][:url] if at_picture[:thumbnails] && at_picture[:thumbnails][:large]
+              cuisine.picture = Picture.find_or_create_by_image(orig_url, thumb_url)
             end
           end
 
@@ -83,9 +84,9 @@ namespace :airtable do
           unless at_list[:cover].empty?
             puts "  Adding Pictures to List - #{list[:name]}"
             at_list[:cover].each do |at_picture|
-              if at_picture[:thumbnails] && at_picture[:thumbnails][:large] && url = at_picture[:thumbnails][:large][:url]
-                list.picture = Picture.find_or_create_by_image(url)
-              end
+              orig_url = at_picture[:url]
+              thumb_url = at_picture[:thumbnails][:large][:url] if at_picture[:thumbnails] && at_picture[:thumbnails][:large]
+              list.picture = Picture.find_or_create_by_image(orig_url, thumb_url)
             end
           end
 
@@ -105,9 +106,9 @@ namespace :airtable do
         unless at_neighborhood[:pictures].empty?
           puts "  Adding Pictures to Neighborhood - #{neighborhood[:name]}"
           at_neighborhood[:pictures].each do |at_picture|
-            if at_picture[:thumbnails] && at_picture[:thumbnails][:large] && url = at_picture[:thumbnails][:large][:url]
-              neighborhood.pictures << Picture.find_or_create_by_image(url)
-            end
+            orig_url = at_picture[:url]
+            thumb_url = at_picture[:thumbnails][:large][:url] if at_picture[:thumbnails] && at_picture[:thumbnails][:large]
+            neighborhood.pictures << Picture.find_or_create_by_image(orig_url, thumb_url)
           end
         end
 
@@ -123,5 +124,6 @@ namespace :airtable do
     puts "#{Cuisine.count} cuisines created."
     puts "#{List.count} lists created."
     puts "#{Neighborhood.count} neighborhoods created."
+    puts "#{Picture.count} pictures created."
   end
 end

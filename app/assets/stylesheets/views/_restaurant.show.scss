@@ -1,0 +1,6 @@
+.restaurant.show {
+  .restaurant-map {
+    @include aspect-ratio(16, 9);
+    background-color: $white-dark;
+  }
+}

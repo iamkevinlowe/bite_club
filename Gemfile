@@ -35,8 +35,12 @@ gem 'airtable'
 # Handle picture attachments
 gem 'paperclip', '~> 4.3'
 
-# Using Yelp API for restaurant info
-gem 'yelp', require: 'yelp'
+# Use Yelp API for restaurant info
+# Version 2.1.1 has a conflict with something
+gem 'yelp', '2.0.5', require: 'yelp'
+
+# Use Instagram API for restaurant carousel
+gem 'instagram'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
