@@ -79,6 +79,7 @@ $(document).on('page:change', function() {
       neighborhoods = response;
     })
   ).then(function() {
+    setButtonActiveClass(buttons[0]);
     filterLists('all');
   });
 
