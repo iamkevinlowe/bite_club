@@ -9,17 +9,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body class="<%= controller_name %> <%= action_name %>">
+  <div class="wrapper">
+    <% if flash[:alert] %>
+      <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
 
-<% if flash[:alert] %>
-  <div class="alert alert-warning">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <%= flash[:alert] %>
+    <%= yield %>
+
+    <%= render partial: "components/footer" %>
   </div>
-<% end %>
-
-<%= yield %>
-
-<%= render partial: "components/footer" %>
-
 </body>
 </html>

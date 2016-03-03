@@ -1,22 +1,26 @@
-$footer-height: 50px;
+$footer-height: 254px;
 
 body {
   background-color: $black-base;
-  margin-bottom: $footer-height;
-}
 
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: $footer-height;
-  background-color: $black-dark;
-  opacity: 0;
-  z-index: 2;
-  @include transition(opacity ease-in-out 0.5s);
+  .wrapper {
+    position: relative;
+    padding-bottom: $footer-height;
+  }
 
-  .content {
-    @include center-content;
+  footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: $footer-height;
+    background-color: $black-dark;
+    opacity: 0;
+    z-index: 2;
+    @include transition(opacity ease-in-out 0.5s);
+
+    .content {
+      @include center-content;
+    }
   }
 }

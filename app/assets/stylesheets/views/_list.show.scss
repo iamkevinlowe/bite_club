@@ -1,5 +1,7 @@
 .list.show, .cuisine.show, .neighborhood.show {
   .heading {
+    margin-bottom: 25px;
+
     .card {
       height: 80px;
       background-color: $black-dark;
@@ -26,7 +28,8 @@
   }
 
   .list-cards {
-    margin: 25px;
+    margin: 0 25px;
+    margin-bottom: 25px;
 
     .list-card {
       @include card;
