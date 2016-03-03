@@ -5,6 +5,10 @@ class CreatePictures < ActiveRecord::Migration
       t.references :list, index: true, foreign_key: true
       t.references :neighborhood, index: true, foreign_key: true
       t.references :restaurant, index: true, foreign_key: true
+
+      t.string :large
+      t.string :medium
+      t.string :small
     end
   end
 end

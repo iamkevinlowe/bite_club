@@ -8,9 +8,6 @@ gem 'rails', '4.2.5'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 
-# Use Bootsrap 3
-gem 'bootstrap-sass'
-
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
@@ -31,10 +28,6 @@ gem 'figaro'
 
 # Pull in prefilled data from AirTable
 gem 'airtable'
-
-# TODO: Might not need if sourcing photos from airtable
-# Handle picture attachments
-gem 'paperclip', '~> 4.3'
 
 # Use Yelp API for restaurant info
 # Version 2.1.1 has a conflict with something

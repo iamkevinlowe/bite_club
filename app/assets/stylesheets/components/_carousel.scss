@@ -1,4 +1,4 @@
-.owl-carousel {
+.carousel-main {
   margin: 25px 0;
   
   .carousel-image {
@@ -8,5 +8,26 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+  }
+}
+
+.carousel-instagram {
+  @extend .carousel-main;
+
+  .group {
+    @include clearfix;
+
+    .carousel-image {
+      @include aspect-ratio(1, 1);
+      display: inline-block;
+      width: calc(#{percentage(1/3)} - (2/3 * 10px));
+      margin-right: 10px;
+      margin-bottom: 10px;
+      float: left;
+
+      &:nth-child(3n+3) {
+        margin-right: 0;
+      }
+    }
   }
 }

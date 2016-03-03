@@ -40,23 +40,4 @@
       margin: 30px auto;
     }
   }
-
-  .cards {
-    margin: 0 25px;
-    margin-bottom: 25px;
-
-    .card {
-      @include card;
-
-      .content {
-        @include center-content;
-        font-size: 3vw;
-        font-family: 'Rock Salt', cursive;
-
-        @media screen and (max-width: $mobile-max-width) {
-          font-size: 4vw;
-        }
-      }
-    }
-  }
 }

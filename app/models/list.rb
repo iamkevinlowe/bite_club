@@ -7,9 +7,13 @@ class List < ActiveRecord::Base
     self.class.name.downcase
   end
 
-  def picture_url(size = 'small')
-    # picture.image.url(:large) if picture
-    picture.nil? ? "" : size == 'small' ? picture.thumb_url : picture.source_url
+  def picture_url(size = 'medium')
+    if picture
+      return picture.small if size == 'small'
+      return picture.medium if size == 'medium'
+      return picture.large if size == 'large'
+    end
+    ""
   end
 
   def as_json(options = {})

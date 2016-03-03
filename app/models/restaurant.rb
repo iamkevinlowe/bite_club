@@ -12,8 +12,12 @@ class Restaurant < ActiveRecord::Base
     neighborhood[:name] if neighborhood
   end
 
-  def picture_url(size = 'small')
-    # pictures.sample.image.url(:large) if pictures.any?
-    pictures.empty? ? "" : size == 'small' ? pictures.sample.thumb_url : pictures.sample.source_url
+  def picture_url(size = 'medium')
+    if pictures.any?
+      return pictures.last.small if size == 'small'
+      return pictures.last.medium if size == 'medium'
+      return pictures.last.large if size == 'large'
+    end
+    ""
   end
 end

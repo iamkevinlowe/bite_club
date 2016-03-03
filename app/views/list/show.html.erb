@@ -4,7 +4,7 @@
       <div class="card">
         <div class="back-arrow">
           <%= link_to :root do %>
-            <span class="glyphicon glyphicon-chevron-left"></span>
+            <%= inline_svg('back-arrow') %>
           <% end %>
         </div>
         <div class="content">
@@ -18,7 +18,7 @@
     <% @list.restaurants.each do |restaurant| %>
       <div class="third half-mobile">
         <%= link_to restaurant do %> 
-          <div class="list-card" style="background-image: url(<%= restaurant.picture_url %>)">
+          <div class="list-card" style="background-image: url(<%= restaurant.picture_url('medium') %>)">
             <div class="list-content">
               <p class="restaurant-main"><%= restaurant.name %></p>
               <p class="restaurant-sub">

@@ -40,7 +40,7 @@ namespace :airtable do
         description: at_restaurant[:description].empty? ? nil : at_restaurant[:description],
         cost: at_restaurant[:cost].empty? ? nil : at_restaurant[:cost],
         reservations: at_restaurant[:reservations] == true ? true : false,
-        instagram: at_restaurant[:instagram].empty? ? nil : at_restaurant[:instagram].gsub('#', ''),
+        instagram: at_restaurant[:instagram].empty? ? nil : at_restaurant[:instagram].gsub('#', '').split(', ').first,
         yelp_id: at_restaurant[:yelp_id].empty? ? nil : at_restaurant[:yelp_id],
         google_place_id: at_restaurant[:google_place_id].empty? ? nil : at_restaurant[:google_place_id],
         opentable_id: at_restaurant[:opentable_id].empty? ? nil : at_restaurant[:opentable_id]
@@ -49,9 +49,10 @@ namespace :airtable do
       unless at_restaurant[:pictures].empty?
         puts "  Adding Pictures to Restaurant - #{restaurant[:name]}"
         at_restaurant[:pictures].each do |at_picture|
-          orig_url = at_picture[:url]
-          thumb_url = at_picture[:thumbnails][:large][:url] if at_picture[:thumbnails] && at_picture[:thumbnails][:large]
-          restaurant.pictures << Picture.find_or_create_by_image(orig_url, thumb_url)
+          large = at_picture[:url]
+          medium = at_picture[:thumbnails] ? at_picture[:thumbnails][:large][:url] : nil
+          small = at_picture[:thumbnails] ? at_picture[:thumbnails][:small][:url] : nil
+          restaurant.pictures << Picture.find_or_create_by_urls(large, medium, small)
         end
       end
 
@@ -64,9 +65,10 @@ namespace :airtable do
           unless at_cuisine[:icon].empty?
             puts "  Adding Pictures to Cuisine - #{cuisine[:name]}"
             at_cuisine[:icon].each do |at_picture|
-              orig_url = at_picture[:url]
-              thumb_url = at_picture[:thumbnails][:large][:url] if at_picture[:thumbnails] && at_picture[:thumbnails][:large]
-              cuisine.picture = Picture.find_or_create_by_image(orig_url, thumb_url)
+              large = at_picture[:url]
+              medium = at_picture[:thumbnails] ? at_picture[:thumbnails][:large][:url] : nil
+              small = at_picture[:thumbnails] ? at_picture[:thumbnails][:small][:url] : nil
+              cuisine.picture = Picture.find_or_create_by_urls(large, medium, small)
             end
           end
 
@@ -84,9 +86,10 @@ namespace :airtable do
           unless at_list[:cover].empty?
             puts "  Adding Pictures to List - #{list[:name]}"
             at_list[:cover].each do |at_picture|
-              orig_url = at_picture[:url]
-              thumb_url = at_picture[:thumbnails][:large][:url] if at_picture[:thumbnails] && at_picture[:thumbnails][:large]
-              list.picture = Picture.find_or_create_by_image(orig_url, thumb_url)
+              large = at_picture[:url]
+              medium = at_picture[:thumbnails] ? at_picture[:thumbnails][:large][:url] : nil
+              small = at_picture[:thumbnails] ? at_picture[:thumbnails][:small][:url] : nil
+              list.picture = Picture.find_or_create_by_urls(large, medium, small)
             end
           end
 
@@ -106,9 +109,10 @@ namespace :airtable do
         unless at_neighborhood[:pictures].empty?
           puts "  Adding Pictures to Neighborhood - #{neighborhood[:name]}"
           at_neighborhood[:pictures].each do |at_picture|
-            orig_url = at_picture[:url]
-            thumb_url = at_picture[:thumbnails][:large][:url] if at_picture[:thumbnails] && at_picture[:thumbnails][:large]
-            neighborhood.pictures << Picture.find_or_create_by_image(orig_url, thumb_url)
+            large = at_picture[:url]
+            medium = at_picture[:thumbnails] ? at_picture[:thumbnails][:large][:url] : nil
+            small = at_picture[:thumbnails] ? at_picture[:thumbnails][:small][:url] : nil
+            neighborhood.pictures << Picture.find_or_create_by_urls(large, medium, small)
           end
         end
 

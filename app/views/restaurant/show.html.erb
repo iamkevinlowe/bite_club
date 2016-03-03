@@ -1,9 +1,9 @@
 <section>
   <div class="grid">
     <div class="offset-sixth two-thirds offset-eighth-mobile three-fourths-mobile">
-      <div class="owl-carousel">
+      <div class="carousel-main">
         <% @restaurant.pictures.each do |picture| %>
-          <div class="carousel-image" style="background-image: url(<%= picture.source_url %>);"></div>
+          <div class="carousel-image" style="background-image: url(<%= picture.large %>);"></div>
         <% end %>
       </div>
 
@@ -26,9 +26,13 @@
       </div>
 
       <% if @instagram_data %>
-        <div class="restaurant-instagram owl-carousel">
-          <% @instagram_data.media.each do |media| %>
-            <div class="carousel-image" style="background-image: url(<%= media %>);"></div>
+        <div class="restaurant-instagram carousel-instagram">
+          <% @instagram_data.media.each_slice(6) do |group| %>
+            <div class="group">
+              <% group.each do |media| %>
+                <div class="carousel-image" style="background-image: url(<%= media %>);"></div>
+              <% end %>
+            </div>
           <% end %>
         </div>
       <% end %>

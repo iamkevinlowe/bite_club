@@ -1,26 +1,82 @@
 $footer-height: 254px;
 
-body {
-  background-color: $black-base;
+* {
+  box-sizing: border-box;
+}
 
+html {
+  font-size: 10px;
+}
+
+body {
+  margin: 0;
+  background-color: $black-base;
+  line-height: 1.428571429;
+  
   .wrapper {
     position: relative;
     padding-bottom: $footer-height;
   }
 
-  footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: $footer-height;
-    background-color: $black-dark;
-    opacity: 0;
-    z-index: 2;
-    @include transition(opacity ease-in-out 0.5s);
+}
 
-    .content {
-      @include center-content;
-    }
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: $footer-height;
+  background-color: $black-dark;
+  opacity: 0;
+  z-index: 2;
+  @include transition(opacity ease-in-out 0.5s);
+
+  .content {
+    @include center-content;
   }
+}
+
+@mixin header-base {
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+h1, h2, h3 {
+  @include header-base;
+
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 65%;
+}
+
+h4, h5, h6 {
+  @include header-base;
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 75%;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+h4 {
+  font-size: 18px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  font-size: 12px;
 }

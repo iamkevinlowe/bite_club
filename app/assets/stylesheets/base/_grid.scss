@@ -10,12 +10,7 @@
 }
 
 .grid {
-  &:after {
-    content: " ";
-    display: block;
-    height: 0;
-    clear: both;
-  }
+  @include clearfix;
 
   .sixth {
     @include grid(1/6);

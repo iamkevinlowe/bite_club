@@ -13,6 +13,15 @@
         @include transform(translate(0, -50%));
         padding: 0 10px;
         font-size: 3rem;
+
+        a {
+          vertical-align: middle;
+          
+          svg {
+            height: 30px;
+            fill: $white-base;
+          }
+        }
       }
 
       .content {
@@ -22,50 +31,6 @@
         .list-name {
           font-size: 4rem;
           font-weight: bold;
-        }
-      }
-    }
-  }
-
-  .list-cards {
-    margin: 0 25px;
-    margin-bottom: 25px;
-
-    .list-card {
-      @include card;
-
-      .list-content {
-        position: absolute;
-        bottom: 0;
-        padding: 0 15px;
-        font-family: 'Rock Salt', cursive;
-
-        .restaurant-main {
-          font-size: 3vw;
-          font-weight: bold;
-        }
-
-        .restaurant-sub {
-          font-size: 1.8vw;
-
-          .neighborhood-name {
-            font-weight: bold;
-          }
-        }
-      }
-    }
-
-    @media screen and (max-width: $mobile-max-width) {
-      .list-card {
-        .list-content {
-          .restaurant-main {
-            font-size: 4vw;
-            margin-bottom: 0;
-          }
-
-          .restaurant-sub {
-            font-size: 2.4vw;
-          }
         }
       }
     }

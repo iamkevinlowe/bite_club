@@ -1,9 +1,25 @@
 .button-filter {
-  @extend .btn;
-  @extend .btn-default;
+  display: inline-block;
+  touch-action: manipulation;
+  white-space: nowrap;
+  @include user-select(none);
+  
   margin: 0 10px;
   padding: 10px 20px;
   font-size: 2rem;
+  border: 1px solid $white-dark;
+  border-radius: 4px;
+  color: $white-dark;
+  background-color: $black-base;
+
+  &.active {
+    color: $black-base;
+    background-color: $white-dark;
+  }
+
+  &:focus {
+    outline: none;
+  }
 
   @media screen and (max-width: $mobile-max-width) {
     margin: 0 4px;
