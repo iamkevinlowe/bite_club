@@ -52,3 +52,12 @@
   -o-transition: $args;
   transition: $args;
 }
+
+@mixin card {
+  @include aspect-ratio(4, 3);
+  text-shadow: 1px 1px 10px $black-dark;
+  background-color: $black-dark;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

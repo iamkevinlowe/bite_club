@@ -24,6 +24,7 @@
       .main {
         color: $white-base;
         font-size: 11rem;
+        font-family: 'Rock Salt', cursive;
       }
 
       .sub {
@@ -34,10 +35,29 @@
   }
 
   .filters {
-    margin: 50px auto;
+    margin: 25px auto;
+    text-align: center;
 
     @media screen and (max-width: $mobile-max-width) {
       margin: 30px auto;
+    }
+  }
+
+  .cards {
+    margin: 0 25px;
+
+    .card {
+      @include card;
+
+      .content {
+        @include center-content;
+        font-size: 3vw;
+        font-family: 'Rock Salt', cursive;
+
+        @media screen and (max-width: $mobile-max-width) {
+          font-size: 4vw;
+        }
+      }
     }
   }
 }

@@ -2,7 +2,6 @@
   .heading {
     .card {
       height: 80px;
-      margin: 0 -15px;
       background-color: $black-dark;
       text-align: center;
 
@@ -16,6 +15,7 @@
 
       .content {
         @include center-content;
+        font-family: 'Rock Salt', cursive;
 
         .list-name {
           font-size: 4rem;
@@ -26,6 +26,7 @@
   }
 
   .list-cards {
+    margin: 25px;
 
     .list-card {
       @include card;
@@ -33,14 +34,17 @@
       .list-content {
         position: absolute;
         bottom: 0;
-        left: 15px;
+        padding: 0 15px;
+        font-family: 'Rock Salt', cursive;
 
         .restaurant-main {
-          font-size: 2rem;
+          font-size: 3vw;
           font-weight: bold;
         }
 
         .restaurant-sub {
+          font-size: 1.8vw;
+
           .neighborhood-name {
             font-weight: bold;
           }
@@ -52,12 +56,12 @@
       .list-card {
         .list-content {
           .restaurant-main {
-            font-size: 1.5rem;
+            font-size: 4vw;
             margin-bottom: 0;
           }
 
           .restaurant-sub {
-            font-size: 1.2rem;
+            font-size: 2.4vw;
           }
         }
       }

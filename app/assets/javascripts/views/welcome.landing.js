@@ -34,7 +34,7 @@ $(document).on('page:change', function() {
   }
 
   function makeCardElement(list) {
-    var card = "<div class='col-xs-6 col-md-4'>" +
+    var card = "<div class='third half-mobile'>" +
       "<a href='" + list.type + "/" + list.id + "'>" +
         "<div class='card' style='background-image: url(" + list.picture_url + ")'>" +
           "<div class='content'>" +

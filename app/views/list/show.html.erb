@@ -1,6 +1,6 @@
-<section class="container-fluid">
-  <div class="row heading">
-    <div class="col-md-12">
+<section>
+  <div class="grid heading">
+    <div class="full">
       <div class="card">
         <div class="back-arrow">
           <%= link_to :root do %>
@@ -14,9 +14,9 @@
     </div>
   </div>
 
-  <div class="row list-cards">
+  <div class="grid list-cards">
     <% @list.restaurants.each do |restaurant| %>
-      <div class="col-xs-6 col-md-4">
+      <div class="third half-mobile">
         <%= link_to restaurant do %> 
           <div class="list-card" style="background-image: url(<%= restaurant.picture_url %>)">
             <div class="list-content">
