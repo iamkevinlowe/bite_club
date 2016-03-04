@@ -1,40 +1,38 @@
 $(document).on('page:change', function() {
   if (!document.getElementsByClassName('welcome landing')[0]) return;
 
-  var themes = [];
-  var cuisines = [];
-  var neighborhoods = [];
+  var buttons = document.getElementsByClassName('button-filter');
 
-  function displayLists(lists) {
-    var cardsElement = document.getElementsByClassName('cards')[0];
-    cardsElement.innerHTML = "";
+  function displayListTypes(type) {
+    var allCards = document.querySelectorAll("[data-type]");
 
-    lists.forEach(function(list) {
-      cardsElement.innerHTML += makeCardElement(list);
-    });
-  }
+    if (type == 'all') {
+      for (var i = 0; i < allCards.length; i++) {
+        allCards[i].style.display = 'block';
+      }
+    } else {
+      var showCards = document.querySelectorAll("[data-type='" + type + "']");
+      var hideCards = [];
 
-  function filterLists(filter) {
-    switch (filter) {
-      case 'all':
-        displayLists(themes.concat(cuisines).concat(neighborhoods));
-        break;
-      case 'theme':
-        displayLists(themes);
-        break;
-      case 'cuisine':
-        displayLists(cuisines);
-        break;
-      case 'neighborhood':
-        displayLists(neighborhoods);
-        break;
-      default:
-        console.log('Error: ' + filter + ' is out of bounds');
+      for (var i = 0; i < allCards.length; i++) {
+        if (Array.prototype.indexOf.call(showCards, allCards[i]) < 0) {
+          hideCards.push(allCards[i]);
+        }
+      }
+
+      for (var i = 0; i < showCards.length; i++) {
+        showCards[i].style.display = 'block';
+      }
+
+      for (var i = 0; i < hideCards.length; i++) {
+        hideCards[i].style.display = 'none';
+      }
     }
   }
 
   function makeCardElement(list) {
-    var card = "<div class='third half-mobile'>" +
+    var cardsElement = document.getElementsByClassName('cards')[0];
+    var card = "<div class='third half-mobile' data-type='" + list.type + "''>" +
       "<a href='" + list.type + "/" + list.id + "'>" +
         "<div class='card' style='background-image: url(" + list.picture_url + ")'></div>" +
         "<div class='content'>" +
@@ -43,10 +41,8 @@ $(document).on('page:change', function() {
       "</a>" +
     "</div>";
 
-    return card;
+    cardsElement.innerHTML += card;
   }
-
-  var buttons = document.getElementsByClassName('button-filter');
 
   function setButtonActiveClass(elem) {
     for (var i = 0; i < buttons.length; i++) {
@@ -61,25 +57,30 @@ $(document).on('page:change', function() {
       url: '/list',
       dataType: 'JSON'
     }).done(function(response) {
-      themes = response;
+      response.forEach(function(theme) {
+        makeCardElement(theme);
+      });
     }),
     $.ajax({
       method: 'GET',
       url: '/cuisine',
       dataType: 'JSON'
     }).done(function(response) {
-      cuisines = response;
+      response.forEach(function(cuisine) {
+        makeCardElement(cuisine);
+      });
     }),
     $.ajax({
       method: 'GET',
       url: '/neighborhood',
       datatype: 'JSON'
     }).done(function(response) {
-      neighborhoods = response;
+      response.forEach(function(neighborhood) {
+        makeCardElement(neighborhood);
+      });
     })
   ).then(function() {
     setButtonActiveClass(buttons[0]);
-    filterLists('all');
   });
 
   for (var i = 0; i < buttons.length; i++) {
@@ -87,7 +88,7 @@ $(document).on('page:change', function() {
       event.preventDefault();
       
       setButtonActiveClass(this);
-      filterLists(this.dataset.filter);
+      displayListTypes(this.dataset.filter);
     });
   }
 
