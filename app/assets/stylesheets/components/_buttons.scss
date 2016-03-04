@@ -2,6 +2,7 @@
   display: inline-block;
   touch-action: manipulation;
   white-space: nowrap;
+  cursor: pointer;
   @include user-select(none);
   
   margin: 0 10px;

@@ -1,14 +1,7 @@
 $(document).on('page:change', function() {
   if (!document.getElementsByClassName('restaurant show')[0]) return;
 
-  $('.carousel-main').owlCarousel({
-    loop: true,
-    autoplay: true,
-    center: true,
-    items: 1
-  });
-
-  $('.carousel-instagram').owlCarousel({
+  $('.carousel-main, .carousel-instagram').owlCarousel({
     loop: true,
     autoplay: true,
     center: true,

@@ -36,10 +36,9 @@ $(document).on('page:change', function() {
   function makeCardElement(list) {
     var card = "<div class='third half-mobile'>" +
       "<a href='" + list.type + "/" + list.id + "'>" +
-        "<div class='card' style='background-image: url(" + list.picture_url + ")'>" +
-          "<div class='content'>" +
-            "<span>" + list.name + "</span>" +
-          "</div>" +
+        "<div class='card' style='background-image: url(" + list.picture_url + ")'></div>" +
+        "<div class='content'>" +
+          "<span>" + list.name + "</span>" +
         "</div>" +
       "</a>" +
     "</div>";

@@ -1,38 +1,3 @@
 .list.show, .cuisine.show, .neighborhood.show {
-  .heading {
-    margin-bottom: 25px;
 
-    .card {
-      height: 80px;
-      background-color: $black-dark;
-      text-align: center;
-
-      .back-arrow {
-        position: absolute;
-        top: 50%;
-        @include transform(translate(0, -50%));
-        padding: 0 10px;
-        font-size: 3rem;
-
-        a {
-          vertical-align: middle;
-          
-          svg {
-            height: 30px;
-            fill: $white-base;
-          }
-        }
-      }
-
-      .content {
-        @include center-content;
-        font-family: 'Rock Salt', cursive;
-
-        .list-name {
-          font-size: 4rem;
-          font-weight: bold;
-        }
-      }
-    }
-  }
 }

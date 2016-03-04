@@ -1,4 +1,5 @@
 .restaurant.show {
+
   .restaurant-details {
     list-style: none;
     font-size: 2rem;
@@ -8,12 +9,12 @@
     }
 
     .restaurant-name {
-      font-size: 5rem;
+      font-size: 4rem;
     }
 
     .restaurant-neighborhood {
       float: right;
-      font-size: 3rem;
+      font-size: 2.5rem;
     }
 
     @media screen and (max-width: $mobile-max-width) {

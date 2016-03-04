@@ -1,34 +1,22 @@
 <section>
-  <div class="grid heading">
-    <div class="full">
-      <div class="card">
-        <div class="back-arrow">
-          <%= link_to :root do %>
-            <%= inline_svg('back-arrow') %>
-          <% end %>
-        </div>
-        <div class="content">
-          <span class="list-name"><%= @list.name %></span>
-        </div>
-      </div>
-    </div>
-  </div>
+  <%= render partial: 'components/header', locals: { resource: @list } %>
 
   <div class="grid list-cards">
     <% @list.restaurants.each do |restaurant| %>
       <div class="third half-mobile">
         <%= link_to restaurant do %> 
-          <div class="list-card" style="background-image: url(<%= restaurant.picture_url('medium') %>)">
-            <div class="list-content">
-              <p class="restaurant-main"><%= restaurant.name %></p>
-              <p class="restaurant-sub">
-                <span class="cuisine-names"><%= restaurant.cuisine_names %></span>
-                <% if restaurant.cuisine_names && restaurant.neighborhood_name %>
-                  <span>&mdash;</span>
-                <% end %>
-                <span class="neighborhood-name"><%= restaurant.neighborhood_name %></span>
-              </p>
-            </div>
+          <div class="card" style="background-image: url(<%= restaurant.picture_url('medium') %>)">
+          </div>
+
+          <div class="content">
+            <p class="restaurant-main"><%= restaurant.name %></p>
+            <p class="restaurant-sub">
+              <span class="cuisine-names"><%= restaurant.cuisine_names %></span>
+              <% if restaurant.cuisine_names && restaurant.neighborhood_name %>
+                <span>&mdash;</span>
+              <% end %>
+              <span class="neighborhood-name"><%= restaurant.neighborhood_name %></span>
+            </p>
           </div>
         <% end %>
       </div>

@@ -2,8 +2,6 @@
   background-color: $black-base;
 
   .hero {
-    // background: url(landing-cover-image-1.jpg);
-    background: url(http://static1.squarespace.com/static/5358f5d0e4b0b733eeba3fb5/t/555d893ce4b0ad7cbc44bcbb/1432193347916/Washington+DC+Food+Photography_+DC+Photographer+Dallas+Lillich_09.jpg?format=2500w);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -17,7 +15,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      text-shadow: 1px 1px 10px $black-dark;
+      @include text-shadow(1px 1px 10px, $black-dark);
 
       .main {
         color: $white-base;
