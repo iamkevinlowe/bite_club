@@ -1,8 +1,6 @@
 <div class="nav-header">
   <div class="icon-back-arrow">
-    <%= link_to :back do %>
-      <%= inline_svg('back-arrow') %>
-    <% end %>
+    <a href="javascript:history.back()"><%= inline_svg('back-arrow') %></a>
   </div>
 
   <% if local_assigns[:resource] && resource.respond_to?(:name) %>

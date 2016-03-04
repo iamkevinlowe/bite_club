@@ -32,7 +32,7 @@
           <% @instagram_data.media.each_slice(6) do |group| %>
             <div class="group">
               <% group.each do |media| %>
-                <div class="carousel-image" style="background-image: url(<%= media %>);"></div>
+                <div class="carousel-image instagram-image" style="background-image: url(<%= media %>);"></div>
               <% end %>
             </div>
           <% end %>
