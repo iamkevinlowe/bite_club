@@ -27,9 +27,10 @@
       <div class="restaurant-map" id="map">
       </div>
 
-      <% if @instagram_data %>
+      <% if @instagram_media %>
+        <p class="restaurant-instagram">#<%= @restaurant.instagram %></p>
         <div class="restaurant-instagram carousel-instagram">
-          <% @instagram_data.media.each_slice(6) do |group| %>
+          <% @instagram_media.each_slice(6) do |group| %>
             <div class="group">
               <% group.each do |media| %>
                 <div class="carousel-image instagram-image" style="background-image: url(<%= media %>);"></div>

@@ -1,24 +1,3 @@
-@mixin background-size($size) {
-  -webkit-background-size:  $size;
-  -moz-background-size:     $size;
-  -o-background-size:       $size;
-  background-size:          $size;
-}
-
-@mixin text-shadow($dim: 0 0 0, $color: $black-base) {
-  -webkit-text-shadow:  $dim $color;
-  -moz-text-shadow:     $dim $color;
-  -o-text-shadow:       $dim $color;
-  text-shadow:          $dim $color;
-}
-
-@mixin calc($property, $expression) {
-  #{$property}: -webkit-calc(#{$expression});
-  #{$property}: -moz-calc(#{$expression});
-  #{$property}: -o-calc(#{expression});
-  #{$property}: calc(#{expression});
-}
-
 @mixin aspect-ratio($width, $height) {
   position: relative;
 
@@ -30,11 +9,49 @@
   }
 }
 
+@mixin background-size($size) {
+  -webkit-background-size:  $size;
+  -moz-background-size:     $size;
+  -o-background-size:       $size;
+  background-size:          $size;
+}
+
+@mixin calc($property, $expression) {
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: -moz-calc(#{$expression});
+  #{$property}: -o-calc(#{expression});
+  #{$property}: calc(#{expression});
+}
+
 @mixin center-content {
   position: absolute;
   top: 50%;
   left: 50%;
   @include transform(translate(-50%, -50%));
+}
+
+@mixin clearfix {
+  &:after {
+    content: " ";
+    display: block;
+    height: 0;
+    clear: both;
+  }
+}
+
+@mixin padding-start($args...) {
+  -webkit-padding-start: $args;
+  -moz-padding-start: $args;
+  -ms-padding-start: $args;
+  -o-padding-start: $args;
+  padding-start: $args;
+}
+
+@mixin text-shadow($dim: 0 0 0, $color: $black-base) {
+  -webkit-text-shadow:  $dim $color;
+  -moz-text-shadow:     $dim $color;
+  -o-text-shadow:       $dim $color;
+  text-shadow:          $dim $color;
 }
 
 @mixin transform($transforms) {
@@ -53,27 +70,10 @@
   transition: $args;
 }
 
-@mixin clearfix {
-  &:after {
-    content: " ";
-    display: block;
-    height: 0;
-    clear: both;
-  }
-}
-
 @mixin user-select($args...) {
   -webkit-user-select: $args;
   -moz-user-select: $args;
   -ms-user-select: $args;
   -o-user-select: $args;
   user-select: $args;
-}
-
-@mixin padding-start($args...) {
-  -webkit-padding-start: $args;
-  -moz-padding-start: $args;
-  -ms-padding-start: $args;
-  -o-padding-start: $args;
-  padding-start: $args;
 }

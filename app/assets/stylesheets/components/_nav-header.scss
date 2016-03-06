@@ -5,7 +5,7 @@ $nav-header-height: 80px;
   height: $nav-header-height;
   background-color: $black-dark;
   text-align: center;
-  margin-bottom: 25px;
+  margin-bottom: $element-margin;
 
   .icon-back-arrow {
     position: absolute;
@@ -21,7 +21,7 @@ $nav-header-height: 80px;
 
   .content {
     @include center-content;
-    font-family: 'Rock Salt', cursive;
+    font-family: $rock-salt;
     white-space: nowrap;
 
     .list-name {

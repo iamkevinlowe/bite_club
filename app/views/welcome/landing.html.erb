@@ -1,6 +1,7 @@
 <section>
-  <div class="grid hero" style="background-image: url(<%= asset_path('landing-cover-image-1.jpg') %>);">
-    <div class="full headings">
+  <div class="grid hero">
+    <%= image_tag(asset_path('landing-cover-image-1.jpg'), class: 'hero-image') %>
+    <div class="full hero-heading">
       <h1 class="main">Bite Club</h1>
       <h3 class="sub">Discover the best restaurants in San Francisco</h3>      
     </div>
@@ -16,6 +17,5 @@
   </div>
 
   <div class="grid cards">
-    <!-- TODO: Need to add pagination for lists -->
   </div>
 </section>

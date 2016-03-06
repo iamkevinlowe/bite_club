@@ -5,7 +5,7 @@
     font-size: 2rem;
     
     li {
-      padding: 10px;
+      padding-bottom: 10px;
     }
 
     .restaurant-name {
@@ -16,25 +16,37 @@
       float: right;
       font-size: 2.5rem;
     }
+  }
 
-    @media screen and (max-width: $mobile-max-width) {
-      margin-left: -40px;
-
-      li {
-        padding: 5px;
-      }
-
-      .restaurant-name {
-        font-size: 3rem;
-      }
-
-      .restaurant-neighborhood {
-        font-size: 1.8rem;
-      }
-    }
+  .restaurant-instagram {
+    text-align: center;
+    font-size: 2.5rem;
   }
 
   .restaurant-map {
     @include aspect-ratio(16, 9);
+    margin-bottom: $element-margin;
+  }
+
+  @media screen and (max-width: $mobile-max-width) {
+    .restaurant-details {
+      margin-left: -40px;
+
+      li {
+        padding-bottom: 5px;
+
+        .restaurant-name {
+          font-size: 3rem;
+        }
+
+        .restaurant-neighborhood {
+          font-size: 1.8rem;
+        }
+      }
+    }
+
+    .restaurant-instagram {
+      font-size: 1.8rem;
+    }
   }
 }

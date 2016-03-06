@@ -1,7 +1,8 @@
 $(document).on('page:change', function() {
   if (!document.getElementsByClassName('welcome landing')[0]) return;
 
-  var buttons = document.getElementsByClassName('button-filter');
+  var buttonElements = document.getElementsByClassName('button-filter');
+  var cardsElement = document.getElementsByClassName('cards')[0];
 
   function displayListTypes(type) {
     var allCards = document.querySelectorAll("[data-type]");
@@ -31,7 +32,6 @@ $(document).on('page:change', function() {
   }
 
   function makeCardElement(list) {
-    var cardsElement = document.getElementsByClassName('cards')[0];
     var card = "<div class='third half-mobile' data-type='" + list.type + "''>" +
       "<a href='" + list.type + "/" + list.id + "'>" +
         "<div class='card' style='background-image: url(" + list.picture_url + ")'></div>" +
@@ -45,8 +45,8 @@ $(document).on('page:change', function() {
   }
 
   function setButtonActiveClass(elem) {
-    for (var i = 0; i < buttons.length; i++) {
-      buttons[i].classList.remove('active');
+    for (var i = 0; i < buttonElements.length; i++) {
+      buttonElements[i].classList.remove('active');
     }
     elem.classList.add('active');
   }
@@ -80,16 +80,15 @@ $(document).on('page:change', function() {
       });
     })
   ).then(function() {
-    setButtonActiveClass(buttons[0]);
+    setButtonActiveClass(buttonElements[0]);
   });
 
-  for (var i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener('click', function(event) {
+  for (var i = 0; i < buttonElements.length; i++) {
+    buttonElements[i].addEventListener('click', function(event) {
       event.preventDefault();
       
       setButtonActiveClass(this);
       displayListTypes(this.dataset.filter);
     });
   }
-
 });

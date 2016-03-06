@@ -1,22 +1,15 @@
-.button-filter {
+@mixin button {
   display: inline-block;
   touch-action: manipulation;
   white-space: nowrap;
   cursor: pointer;
   @include user-select(none);
-  
+
   margin: 0 10px;
-  padding: 10px 20px;
-  font-size: 2rem;
+  padding: 6px 20px;
+  font-size: 1.8rem;
   border: 1px solid $white-dark;
   border-radius: 4px;
-  color: $white-dark;
-  background-color: $black-base;
-
-  &.active {
-    color: $black-base;
-    background-color: $white-dark;
-  }
 
   &:focus {
     outline: none;
@@ -27,4 +20,23 @@
     padding: 6px 12px;
     font-size: 1.4rem;
   }
+}
+
+.button-filter {
+  @include button;
+
+  color: $white-dark;
+  background-color: $black-base;
+
+  &.active {
+    color: $black-base;
+    background-color: $white-dark;
+  }
+}
+
+.button-footer{
+  @include button;
+
+  color: $black-base;
+  background-color: $white-dark;
 }

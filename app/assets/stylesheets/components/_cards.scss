@@ -1,7 +1,11 @@
 @mixin card {
+  margin: 0 $element-margin;
+  margin-bottom: $element-margin;
+
   .card {
-    @include aspect-ratio(4, 3);
+    @include aspect-ratio(1, 1);
     text-shadow: 1px 1px 10px $black-dark;
+    
     background-color: $black-dark;
     background-size: cover;
     background-position: center;
@@ -28,14 +32,12 @@ body.notouch {
 
 .cards {
   @include card;
-  margin: 0 25px;
-  margin-bottom: 25px;
 
   .content {
     @include center-content;
     text-align: center;
     font-size: 3vw;
-    font-family: 'Rock Salt', cursive;
+    font-family: $rock-salt;
 
     @media screen and (max-width: $mobile-max-width) {
       font-size: 4vw;
@@ -45,8 +47,6 @@ body.notouch {
 
 .list-cards {
   @include card;
-  margin: 0 25px;
-  margin-bottom: 25px;
 
   .content {
     position: absolute;

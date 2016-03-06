@@ -1,53 +1,16 @@
-<!-- <footer>
-  <div class="content">
-    TODO: Placeholder for now. Replace with links
-    <span>suggestions / comments / feedback</span>
-  </div>
-</footer> -->
-
 <footer>
-  <h5>Like what you see?</h5>
-  <a href="sms:body=Thought you might want to check out BiteClub, a curated list of the best places in San Francisco. joinbiteclub.com" class="tellafriend">Tell a friend</a>
-
-  <h5>Questions? Comments? Suggestions?</h5>
-  <a href="mailto:kassatly@gmail.com" class="contactus">Let us know</a>
+  <div class="grid">
+    <div class="half">
+      <p class="header">Like what you see?</p>
+      <% if browser.device.mobile? %>
+        <a href="sms:body=Thought you might want to check out BiteClub, a curated list of the best places in San Francisco. joinbiteclub.com" class="button-footer">Tell a friend</a>
+      <% else %>
+        <a href="mailto:?subject=Check%20out%20BiteClub&body=Thought%20you%20might%20want%20to%20check%20out%20BiteClub,%20a%20curated%20list%20of%20the%20best%20places%20in%20San%20Francisco.%20joinbiteclub.com" class="button-footer">Tell a friend</a>
+      <% end %>
+    </div>
+    <div class="half">
+      <p class="header">Questions? Comments? Suggestions?</p>
+      <a href="mailto:kassatly@gmail.com?subjectBiteClub%20Questions%20Comments%20Suggestions" class="button-footer">Let us know</a>
+    </div>
+  </div>
 </footer>
-
-<style>
-  .tellafriend, .contactus {
-      color: black;
-      background-color: white;
-      border-radius: 5px;
-      border: 1px solid black;
-      font-size: 1em;
-      letter-spacing: 1px;
-      line-height: 30px;
-      margin: 10px auto 30px;
-      min-width: 200px;
-      width: 200px;
-      padding: 10px 10px 10px 10px;
-      text-align: center;
-      text-decoration: none;
-      text-transform: none;
-      
-      font-family: 'Special Elite', cursive;
-      font-weight: normal !important;
-      font-style: normal !important;
-      display: block;
-
-      transition: color 0.3s ease-out,
-                  background-color 0.3s ease-out,
-                  border-color 0.3s ease-out;
-  }
-
-  .tellafriend:hover, .tellafriend:active, .contactus:hover, .contactus:active {
-      background-color: #808080;
-      border-color: #808080;
-      color: #fff;
-      text-decoration: none;
-      transition: color 0.2s ease-in,
-                  background-color 0.2s ease-in,
-                  border-color 0.2s ease-in;
-  }
-
-</style>

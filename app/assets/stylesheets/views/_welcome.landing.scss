@@ -2,25 +2,31 @@
   background-color: $black-base;
 
   .hero {
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
+    position: relative;
     height: 100vh;
     min-height: 480px;
-    margin-bottom: 25px;
+    margin-bottom: $element-margin;
+    overflow: hidden;
 
-    .headings {
-      text-align: center;
+    .hero-image {
       position: relative;
-      top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
+      @include transform(translate3d(-50%, 0, 0));
+      min-height: 100%;
+      min-width: 100%;
+    }
+
+    .hero-heading {
+      position: absolute;
+      top: 50%;
+      @include transform(translateY(-50%));
+      text-align: center;
       @include text-shadow(1px 1px 10px, $black-dark);
 
       .main {
         color: $white-base;
         font-size: 11rem;
-        font-family: 'Rock Salt', cursive;
+        font-family: $rock-salt;
       }
 
       .sub {
@@ -32,7 +38,7 @@
 
   .filters {
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: $element-margin;
 
     @media screen and (max-width: $mobile-max-width) {
       margin: 30px auto;

@@ -1,8 +1,9 @@
 $(document).on('page:change', function() {
   if (!document.getElementsByClassName('restaurant show')[0]) return;
 
-  var mainCarousel = $('.carousel-main');
   var instagramCarousel = $('.carousel-instagram');
+  var instagramElements = document.getElementsByClassName('instagram-image');
+  var mainCarousel = $('.carousel-main');
 
   mainCarousel.owlCarousel({
     loop: true,
@@ -17,8 +18,6 @@ $(document).on('page:change', function() {
     center: true,
     items: 1
   });
-
-  var instagramElements = document.getElementsByClassName('instagram-image');
 
   for (var i = 0; i < instagramElements.length; i++) {
     instagramElements[i].addEventListener('click', function(event) {

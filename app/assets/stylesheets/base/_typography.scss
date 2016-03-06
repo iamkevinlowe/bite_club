@@ -1,8 +1,15 @@
 @import url(https://fonts.googleapis.com/css?family=Rock+Salt);
 
+$rock-salt: "Rock Salt", cursive;
+$lato: "Lato";
+
 body, a {
   color: $white-base;
-  font-family: 'Lato';
+  font-family: $lato;
+}
+
+a, button {
+  text-decoration: none;
 }
 
 @mixin header-base {

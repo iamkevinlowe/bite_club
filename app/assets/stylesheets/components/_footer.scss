@@ -1,23 +1,39 @@
-$footer-height: 254px;
+$footer-height: 120px;
+$footer-offset-height: 70px;
 
 footer {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
+  overflow: hidden;
   height: $footer-height;
+  text-align: center;
   background-color: $black-dark;
-  opacity: 0;
-  z-index: 2;
-  @include transition(opacity ease-in-out 0.5s);
+  @include transition(height ease-in-out 0.5s);
 
-  .content {
-    @include center-content;
+  .header {
+    font-size: 2rem;
+    margin: 11px 0;
   }
 }
 
 body {
   .wrapper {
     padding-bottom: $footer-height;
+  }
+}
+
+body.notouch {
+  footer {
+    height: $footer-height - $footer-offset-height;
+
+    &:hover {
+      height: $footer-height;
+    }
+  }
+
+  .wrapper {
+    padding-bottom: $footer-height - $footer-offset-height;
   }
 }

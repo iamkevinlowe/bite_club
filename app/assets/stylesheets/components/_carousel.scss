@@ -1,5 +1,5 @@
 .carousel-main {
-  margin: 25px 0;
+  margin-bottom: $element-margin;
   
   .carousel-image {
     @include aspect-ratio(4, 3);
