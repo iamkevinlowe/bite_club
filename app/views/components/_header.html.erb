@@ -1,11 +1,17 @@
 <div class="nav-header">
-  <div class="icon-back-arrow">
-    <a href="javascript:history.back()"><%= inline_svg('back-arrow') %></a>
-  </div>
-
-  <% if local_assigns[:resource] && resource.respond_to?(:name) %>
-    <div class="content">
-      <span class="list-name"><%= resource.name %></span>
+  <div class="grid">
+    <div class="eighth">
+      <div class="icon-back-arrow">
+        <a href="javascript:history.back()"><%= inline_svg('back-arrow') %></a>
+      </div>
     </div>
-  <% end %>
+
+    <div class="three-fourths">
+      <% if local_assigns[:resource] && resource.respond_to?(:name) %>
+        <div class="content">
+          <span class="list-name"><%= resource.name %></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

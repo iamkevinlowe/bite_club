@@ -40,7 +40,7 @@ namespace :airtable do
         description: at_restaurant[:description].empty? ? nil : at_restaurant[:description],
         cost: at_restaurant[:cost].empty? ? nil : at_restaurant[:cost],
         reservations: at_restaurant[:reservations] == true ? true : false,
-        instagram: at_restaurant[:instagram].empty? ? nil : at_restaurant[:instagram].gsub('#', '').split(', ').first,
+        instagram: at_restaurant[:instagram].empty? ? nil : at_restaurant[:instagram].split(', ').first.gsub(/\W+/, ''),
         yelp_id: at_restaurant[:yelp_id].empty? ? nil : at_restaurant[:yelp_id],
         google_place_id: at_restaurant[:google_place_id].empty? ? nil : at_restaurant[:google_place_id],
         opentable_id: at_restaurant[:opentable_id].empty? ? nil : at_restaurant[:opentable_id]

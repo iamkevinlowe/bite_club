@@ -14,29 +14,22 @@
         <li class="restaurant-name"><%= @restaurant.name %></li>
         <li class="restaurant-cost"><%= @restaurant.cost %></li>
         <li class="restaurant-description"><%= @restaurant.description %></li>
-        <% if @yelp_data %>
-          <li class="yelp-rating"><%= image_tag(@yelp_data.rating_url) %></li>
-          <li class="restaurant-reservations">Reservations: <%= @restaurant.reservations ? 'Yes' : 'No' %></li>
-          <li class="yelp-phone">
-            <%= browser.device.mobile? ? link_to("Call Us", @yelp_data.phone_mobile) : @yelp_data.phone %>
-          </li>
-          <li class="yelp-address"><%= @yelp_data.address %></li>
+        <li class="yelp" data-yelp="rating-url"></li>
+        <li class="restaurant-reservations">Reservations: <%= @restaurant.reservations ? 'Yes' : 'No' %></li>
+        <% if browser.device.mobile? %>
+          <li class="yelp" data-yelp="phone-mobile"></li>
+        <% else %>
+          <li class="yelp" data-yelp="phone"></li>
         <% end %>
+        <li class="yelp" data-yelp="address"></li>
       </ul>
 
       <div class="restaurant-map" id="map">
       </div>
 
-      <% if @instagram_media %>
+      <% if @restaurant.instagram %>
         <p class="restaurant-instagram">#<%= @restaurant.instagram %></p>
         <div class="restaurant-instagram carousel-instagram">
-          <% @instagram_media.each_slice(6) do |group| %>
-            <div class="group">
-              <% group.each do |media| %>
-                <div class="carousel-image instagram-image" style="background-image: url(<%= media %>);"></div>
-              <% end %>
-            </div>
-          <% end %>
         </div>
       <% end %>
     </div>

@@ -36,11 +36,12 @@ body.notouch {
   .content {
     @include center-content;
     text-align: center;
-    font-size: 3vw;
+    font-size: 2rem;
     font-family: $rock-salt;
+    font-weight: bold;
 
     @media screen and (max-width: $mobile-max-width) {
-      font-size: 4vw;
+      font-size: 1.5rem;
     }
   }
 }
@@ -54,12 +55,12 @@ body.notouch {
     padding: 0 15px;
 
     .restaurant-main {
-      font-size: 3vw;
+      font-size: 2rem;
       font-weight: bold;
     }
 
     .restaurant-sub {
-      font-size: 1.8vw;
+      font-size: 1.5rem;
 
       .neighborhood-name {
         font-weight: bold;
@@ -70,12 +71,12 @@ body.notouch {
   @media screen and (max-width: $mobile-max-width) {
     .list-content {
       .restaurant-main {
-        font-size: 4vw;
+        font-size: 1.5rem;
         margin-bottom: 0;
       }
 
       .restaurant-sub {
-        font-size: 2.4vw;
+        font-size: 1.125rem;
       }
     }
   }

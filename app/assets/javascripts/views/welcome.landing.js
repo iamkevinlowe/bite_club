@@ -54,7 +54,7 @@ $(document).on('page:change', function() {
   $.when(
     $.ajax({
       method: 'GET',
-      url: '/list',
+      url: '/api/list',
       dataType: 'JSON'
     }).done(function(response) {
       response.forEach(function(theme) {
@@ -63,7 +63,7 @@ $(document).on('page:change', function() {
     }),
     $.ajax({
       method: 'GET',
-      url: '/cuisine',
+      url: '/api/cuisine',
       dataType: 'JSON'
     }).done(function(response) {
       response.forEach(function(cuisine) {
@@ -72,7 +72,7 @@ $(document).on('page:change', function() {
     }),
     $.ajax({
       method: 'GET',
-      url: '/neighborhood',
+      url: '/api/neighborhood',
       datatype: 'JSON'
     }).done(function(response) {
       response.forEach(function(neighborhood) {

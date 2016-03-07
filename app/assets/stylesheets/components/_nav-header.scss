@@ -1,32 +1,29 @@
-$nav-header-height: 80px;
+// $nav-header-height: 80px;
 
 .nav-header {
-  position: relative;
-  height: $nav-header-height;
+  // position: relative;
+  // height: $nav-header-height;
   background-color: $black-dark;
-  text-align: center;
   margin-bottom: $element-margin;
+  font-size: 3rem;
 
   .icon-back-arrow {
-    position: absolute;
-    top: 50%;
-    @include transform(translateY(-45%));
+    position: relative;
+    top: 17px;
+    // top: 50%;
+    // @include transform(translateY(-45%));
     padding: 0 10px;
-    font-size: 3rem;
-
-    a {
-      vertical-align: middle;
-    }
   }
 
   .content {
-    @include center-content;
+    text-align: center;
     font-family: $rock-salt;
-    white-space: nowrap;
-
-    .list-name {
-      font-size: 3rem;
-      font-weight: bold;
-    }
+    font-weight: bold;
+    margin: 15px 0;
   }
+
+  @media screen and (max-width: $mobile-max-width) {
+    font-size: 2.25rem;
+  }
+
 }

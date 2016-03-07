@@ -1,6 +1,10 @@
 .icon-back-arrow {
   svg {
-    height: 50px;
+    height: 30px;
     fill: $white-base;
+
+    @media screen and (max-width: $mobile-max-width) {
+      height: 22.5px;
+    }
   }
 }

@@ -4,6 +4,8 @@
   white-space: nowrap;
   cursor: pointer;
   @include user-select(none);
+  @include transition(color ease-in-out 0.25s);
+  @include transition(background-color ease-in-out 0.25s);
 
   margin: 0 10px;
   padding: 6px 20px;
