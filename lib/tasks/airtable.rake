@@ -1,39 +1,29 @@
 namespace :airtable do
-  desc 'Loads the database from airtable'
-
+  desc 'Loads the database from Airtable'
   task load: :environment do
-    Restaurant.delete_all
-    Cuisine.delete_all
-    List.delete_all
-    Neighborhood.delete_all
-    Picture.delete_all
+    restaurants = [];
+    cuisines = [];
+    lists = [];
+    neighborhoods = [];
+    pictures = [];
 
     client = Airtable::Client.new(ENV['airtable_api_key'])
 
-    puts "Getting Airtable tables"
-    puts "  Getting Restaurants table"
-    restaurants_table = client.table(ENV['airtable_app_id'], "Restaurants")
-    puts "  Getting Cuisines table"
-    cuisines_table = client.table(ENV['airtable_app_id'], "Cuisines")
-    puts "  Getting Lists table"
-    lists_table = client.table(ENV['airtable_app_id'], "Lists")
-    puts "  Getting Neighborhoods table"
-    neighborhoods_table = client.table(ENV['airtable_app_id'], "Neighborhoods")
-    puts "Finished getting Airtable tables"
-
     puts "Getting Airtable records"
     puts "  Getting Restaurants records"
-    at_restaurants = restaurants_table.all
+    at_restaurants = client.table(ENV['airtable_app_id'], "Restaurants").all
     puts "  Getting Cuisines records"
-    at_cuisines = cuisines_table.all
+    at_cuisines = client.table(ENV['airtable_app_id'], "Cuisines").all
     puts "  Getting Lists records"
-    at_lists = lists_table.all
+    at_lists = client.table(ENV['airtable_app_id'], "Lists").all
     puts "  Getting Neighborhoods records"
-    at_neighborhoods = neighborhoods_table.all
+    at_neighborhoods = client.table(ENV['airtable_app_id'], "Neighborhoods").all
     puts "Finished getting Airtable records"
 
     puts "Creating local Restaurant records"
     at_restaurants.each do |at_restaurant|
+      next if Restaurant.find_by_name(at_restaurant[:name]) || at_restaurant[:name].empty?
+
       puts "Creating Restaurant - #{at_restaurant[:name]}"
       restaurant = Restaurant.new(
         name: at_restaurant[:name].empty? ? nil : at_restaurant[:name],
@@ -52,7 +42,9 @@ namespace :airtable do
           large = at_picture[:url]
           medium = at_picture[:thumbnails] ? at_picture[:thumbnails][:large][:url] : nil
           small = at_picture[:thumbnails] ? at_picture[:thumbnails][:small][:url] : nil
-          restaurant.pictures << Picture.find_or_create_by_urls(large, medium, small)
+          picture = Picture.find_or_create_by_urls(large, medium, small)
+          restaurant.pictures << picture
+          pictures << picture
         end
       end
 
@@ -74,6 +66,7 @@ namespace :airtable do
 
           puts "  Adding Cuisine - #{cuisine[:name]}"
           restaurant.cuisines << cuisine
+          cuisines << cuisine
         end
       end
 
@@ -89,12 +82,15 @@ namespace :airtable do
               large = at_picture[:url]
               medium = at_picture[:thumbnails] ? at_picture[:thumbnails][:large][:url] : nil
               small = at_picture[:thumbnails] ? at_picture[:thumbnails][:small][:url] : nil
-              list.picture = Picture.find_or_create_by_urls(large, medium, small)
+              picture = Picture.find_or_create_by_urls(large, medium, small)
+              list.picture = picture
+              pictures << picture
             end
           end
 
           puts "  Adding List - #{list[:name]}"
           restaurant.lists << list
+          lists << list
         end
       end
 
@@ -112,22 +108,25 @@ namespace :airtable do
             large = at_picture[:url]
             medium = at_picture[:thumbnails] ? at_picture[:thumbnails][:large][:url] : nil
             small = at_picture[:thumbnails] ? at_picture[:thumbnails][:small][:url] : nil
-            neighborhood.pictures << Picture.find_or_create_by_urls(large, medium, small)
+            picture = Picture.find_or_create_by_urls(large, medium, small)
+            neighborhood.pictures << picture
+            pictures = picture
           end
         end
 
         puts "  Adding Neighborhood - #{neighborhood[:name]}"
         restaurant.neighborhood = neighborhood
+        neighborhoods << neighborhood
       end
 
-      restaurant.save
+      restaurants << restaurant if restaurant.save
       puts "Finished creating Restaurant - #{restaurant[:name]}"
     end
 
-    puts "#{Restaurant.count} restaurants created."
-    puts "#{Cuisine.count} cuisines created."
-    puts "#{List.count} lists created."
-    puts "#{Neighborhood.count} neighborhoods created."
-    puts "#{Picture.count} pictures created."
+    puts "#{restaurants.count} restaurants created."
+    puts "#{cuisines.count} cuisines created."
+    puts "#{lists.count} lists created."
+    puts "#{neighborhoods.count} neighborhoods created."
+    puts "#{pictures.count} pictures created."
   end
 end
