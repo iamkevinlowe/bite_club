@@ -6,25 +6,24 @@ $(document).on('page:change', function() {
   var instagramMedia = [];
   var instagramGroupSize = 6;
   var instagramTotalSize = 18;
-
-  getInstagramMedia();
+  var owl = {};
 
   function addClickHandlers() {
     var instagramElements = document.getElementsByClassName('instagram-image');
 
     for (var i = 0; i < instagramElements.length; i++) {
       instagramElements[i].addEventListener('click', function(event) {
-        // instagramCarousel.trigger('stop.owl.autoplay');
+        owl.stop();
 
-        // if (event.currentTarget.requestFullscreen) {
-        //   event.currentTarget.requestFullscreen();
-        // } else if (event.currentTarget.msRequestFullscreen) {
-        //   event.currentTarget.msRequestFullscreen();
-        // } else if (event.currentTarget.mozRequestFullScreen) {
-        //   event.currentTarget.mozRequestFullScreen();
-        // } else if (event.currentTarget.webkitRequestFullscreen) {
-        //   event.currentTarget.webkitRequestFullscreen();
-        // }
+        if (event.currentTarget.requestFullscreen) {
+          event.currentTarget.requestFullscreen();
+        } else if (event.currentTarget.msRequestFullscreen) {
+          event.currentTarget.msRequestFullscreen();
+        } else if (event.currentTarget.mozRequestFullScreen) {
+          event.currentTarget.mozRequestFullScreen();
+        } else if (event.currentTarget.webkitRequestFullscreen) {
+          event.currentTarget.webkitRequestFullscreen();
+        }
       });
     }
   }
@@ -38,24 +37,12 @@ $(document).on('page:change', function() {
       dataType: 'JSON'
     }).done(function(response) {
       instagramMedia = instagramMedia.concat(response.media);
+      insertInstagramGroupElement(response.media);
 
       if (instagramMedia.length < instagramTotalSize && response.max_id) {
         getInstagramMedia(response.max_id);
       } else {
-        instagramMedia.splice(instagramTotalSize);
-
-        for (var i = 0; i < instagramMedia.length; i += instagramGroupSize) {
-          insertInstagramGroupElement(instagramMedia.slice(i, i + instagramGroupSize));
-        }
-
-        $instagramCarouselElement.owlCarousel({
-          loop: true,
-          autoplay: true,
-          center: true,
-          items: 1
-        });
-
-        addClickHandlers();
+        // addClickHandlers();
       }
     });
   }
@@ -69,6 +56,15 @@ $(document).on('page:change', function() {
 
     group += "</div>";
 
-    $instagramCarouselElement.append(group);
+    owl.addItem(group);
   }
+
+  $instagramCarouselElement.owlCarousel({
+    autoPlay: true,
+    singleItem: true
+  });
+
+  owl = $instagramCarouselElement.data('owlCarousel');
+  
+  getInstagramMedia();
 });

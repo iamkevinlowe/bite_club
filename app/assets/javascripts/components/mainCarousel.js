@@ -3,10 +3,8 @@ $(document).on('page:change', function() {
 
   if ($mainCarousel) {
     $mainCarousel.owlCarousel({
-      loop: true,
-      autoplay: true,
-      center: true,
-      items: 1
+      autoPlay: true,
+      singleItem: true
     });
   }
 });

@@ -39,6 +39,9 @@ gem 'instagram'
 # Use Browser gem for device detection
 gem 'browser'
 
+# Use Owl Carousel
+gem 'owlcarousel-rails'
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
