@@ -10,12 +10,6 @@ Rails.application.routes.draw do
   resources :restaurant, only: :show
 
   namespace :api do
-    resources :cuisine, only: :index
-
-    resources :list, only: :index
-
-    resources :neighborhood, only: :index
-
     get '/restaurant/:id/instagram/(:max_id)', to: 'restaurant#instagram'
 
     get '/restaurant/:id/yelp/', to: 'restaurant#yelp'

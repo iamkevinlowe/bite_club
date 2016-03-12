@@ -1,9 +1,9 @@
 <section>
-  <%= render partial: 'components/header', locals: { resource: @list } %>
+  <%= render partial: 'components/nav_header', locals: { resource: @list } %>
 
   <div class="grid list-cards">
     <% @list.restaurants.each do |restaurant| %>
-      <div class="third half-mobile">
+      <div class="full-xs half-s third-m">
         <%= link_to restaurant do %> 
           <div class="card" style="background-image: url(<%= restaurant.picture_url('medium') %>)">
           </div>

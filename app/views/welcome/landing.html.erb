@@ -7,8 +7,11 @@
     </div>
   </div>
 
-  <div class="grid filters">
-    <div class="full">
+  <div class="grid nav-filters">
+    <div class="fourth logo">
+      <%= inline_svg('logo2') %>
+    </div>
+    <div class="three-fourths filters">
       <%= button_tag "All", class: 'button-filter', data: { filter: 'all' } %>
       <%= button_tag "Theme", class: 'button-filter', data: { filter: 'list' } %>
       <%= button_tag "Cuisine", class: 'button-filter', data: { filter: 'cuisine' } %>
@@ -16,6 +19,16 @@
     </div>
   </div>
 
-  <div class="grid cards">
+  <div class="grid landing-cards">
+    <% @lists.each do |list| %>
+      <%= content_tag(:div, class: 'full-xs half-s third-m', data: { type: list.type }) do %>
+        <%= link_to list do %>
+          <%= content_tag(:div, nil, class: 'card', style: "background-image: url(#{list.picture_url})") %>
+          <%= content_tag(:div, class: 'content') do %>
+            <%= content_tag(:span, list.name) %>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
   </div>
 </section>

@@ -1,0 +1,17 @@
+<nav class="grid nav-header">
+  <div class="eighth">
+    <div class="logo">
+      <%= link_to :root do %>
+        <%= inline_svg('logo1') %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="three-fourths">
+    <% if local_assigns[:resource] && resource.respond_to?(:name) %>
+      <div class="content">
+        <span class="list-name"><%= resource.name %></span>
+      </div>
+    <% end %>
+  </div>
+</nav>

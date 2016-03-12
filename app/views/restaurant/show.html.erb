@@ -1,8 +1,8 @@
 <section>
-  <%= render partial: 'components/header', locals: { resource: @restaurant } %>
+  <%= render partial: 'components/nav_header', locals: { resource: @restaurant } %>
 
   <div class="grid">
-    <div class="offset-sixth two-thirds offset-eighth-mobile three-fourths-mobile">
+    <div class="full-xs offset-sixth-m two-thirds-m">
       <div class="carousel-main">
         <% @restaurant.pictures.each do |picture| %>
           <div class="carousel-image" style="background-image: url(<%= picture.large %>);"></div>
@@ -10,28 +10,38 @@
       </div>
 
       <ul class="restaurant-details">
-        <li class="restaurant-neighborhood"><%= @restaurant.neighborhood_name %></li>
-        <li class="restaurant-name"><%= @restaurant.name %></li>
-        <li class="restaurant-cost"><%= @restaurant.cost %></li>
-        <li class="restaurant-description"><%= @restaurant.description %></li>
-        <li class="yelp" data-yelp="rating-url"></li>
-        <li class="restaurant-reservations">Reservations: <%= @restaurant.reservations ? 'Yes' : 'No' %></li>
+        <%= content_tag(:li, @restaurant.neighborhood_name, class: 'restaurant-neighborhood') %>
+        <%= content_tag(:li, @restaurant.name, class: 'restaurant-name') %>
+        <%= content_tag(:li, @restaurant.cost, class: 'restaurant-cost') %>
+        <%= content_tag(:li, @restaurant.description, class: 'restaurant-description') %>
+        <%= content_tag(:li, nil, class: 'yelp', data: { yelp: 'rating-url' }) %>
+        <%= content_tag(:li, "Reservations: #{@restaurant.reservations}", class: 'restaurant-reservations') %>
         <% if browser.device.mobile? %>
-          <li class="yelp" data-yelp="phone-mobile"></li>
+          <%= content_tag(:li, nil, class: 'yelp', data: { yelp: 'phone-mobile' }) %>
         <% else %>
-          <li class="yelp" data-yelp="phone"></li>
+          <%= content_tag(:li, nil, class: 'yelp', data: { yelp: 'phone' }) %>
         <% end %>
-        <li class="yelp" data-yelp="address"></li>
+        <%= content_tag(:li, nil, class: 'yelp', data: { yelp: 'address' }) %>
       </ul>
 
       <div class="restaurant-map" id="map">
       </div>
 
       <% if @restaurant.instagram %>
-        <p class="restaurant-instagram">#<%= @restaurant.instagram %></p>
-        <div class="restaurant-instagram carousel-instagram">
+        <%= content_tag(:p, "##{@restaurant.instagram}", class: 'restaurant-instagram') %>
+        <div class="carousel-instagram">
         </div>
       <% end %>
+    </div>
+  </div>
+
+  <div class="grid instagram-fullscreen">
+    <div class="back-arrow">
+      <%= inline_svg('exit') %>
+    </div>
+
+    <div class="full">
+      <div class="carousel-instagram-fullscreen"></div>
     </div>
   </div>
 </section>

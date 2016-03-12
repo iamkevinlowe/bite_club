@@ -1,10 +1,10 @@
-$(document).on('page:change', function() {
+$(function() {
   var $mainCarousel = $('.carousel-main');
 
-  if ($mainCarousel) {
-    $mainCarousel.owlCarousel({
-      autoPlay: true,
-      singleItem: true
-    });
-  }
+  if ($mainCarousel.length < 1) return;
+
+  $mainCarousel.owlCarousel({
+    autoPlay: true,
+    singleItem: true
+  });
 });

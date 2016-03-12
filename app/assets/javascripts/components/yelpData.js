@@ -1,8 +1,8 @@
-$(document).on('page:change', function() {
-  var mapElement = document.getElementById('map');
-  var yelpElements = document.getElementsByClassName('yelp');
+$(document).on('ready', function() {
+  var mapElement = document.querySelector('#map');
+  var yelpElements = document.querySelectorAll('.yelp');
 
-  if (typeof mapElement == 'undefined' || yelpElements.length < 1) return;
+  if (!mapElement || yelpElements.length < 1) return;
 
   var yelpData = null;
 

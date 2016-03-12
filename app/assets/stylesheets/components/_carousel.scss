@@ -1,14 +1,18 @@
 .carousel-main {
-  margin-bottom: $element-margin;
+  margin-bottom: $element-spacing;
   
   .carousel-image {
-    @include aspect-ratio(4, 3);
+    @include aspect-ratio(16, 9);
     width: 100%;
     margin: 0 auto;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
   }
+}
+
+@mixin instagram-fullscreen {
+  margin: 0;
 }
 
 .carousel-instagram {
@@ -29,6 +33,19 @@
       &:nth-child(3n+3) {
         margin-right: 0;
       }
+    }
+  }
+}
+
+.carousel-instagram-fullscreen {
+  @extend .carousel-main;
+
+  .carousel-image {
+    @include aspect-ratio(1, 1);
+    width: 90vh;
+
+    @media only screen and (orientation: portrait) {
+      width: 90vw;
     }
   }
 }

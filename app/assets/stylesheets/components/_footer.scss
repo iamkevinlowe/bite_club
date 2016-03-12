@@ -1,5 +1,11 @@
-$footer-height: 120px;
-$footer-offset-height: 70px;
+$footer-height-xs: 157px;
+$footer-offset-height-xs: 113px;
+
+$footer-height-s: 85px;
+$footer-offset-height-s: 43px;
+
+$footer-height-m: 93px;
+$footer-offset-height-m: 43px;
 
 footer {
   position: absolute;
@@ -7,44 +13,83 @@ footer {
   left: 0;
   right: 0;
   overflow: hidden;
-  height: $footer-height;
+  height: $footer-height-xs;
   text-align: center;
   background-color: $black-dark;
   z-index: 1;
   @include transition(height ease-in-out 0.5s);
 
-  .header {
-    font-size: 2rem;
+  .heading {
+    font-size: $font-size-footer-heading;
     white-space: nowrap;
     margin: 11px 0;
 
-    @media screen and (max-width: $mobile-max-width) {
-      font-size: 1.5rem;
-      margin: 14.5px 0;
+    @media only screen and (min-width: $break-small) {
+      font-size: $font-size-footer-heading - 0.2;
+    }
+
+    @media only screen and (min-width: $break-medium) {
+      font-size: $font-size-footer-heading + 0.4;
     }
   }
 }
 
 body {
   .wrapper {
-    padding-bottom: $footer-height;
+    padding-bottom: $footer-height-xs;
+  }
+
+  @media only screen and (min-width: $break-small) {
+    .wrapper {
+      padding-bottom: $footer-height-s;
+    }
+  }
+
+  @media only screen and (min-width: $break-medium) {
+    .wrapper {
+      padding-bottom: $footer-height-m;
+    }
   }
 }
 
 body.notouch {
   footer {
-    height: $footer-height - $footer-offset-height;
+    height: $footer-height-xs - $footer-offset-height-xs;
 
     &:hover {
-      height: $footer-height;
-
-      @media screen and (max-width: $mobile-max-width) {
-        height: $footer-height * (5/6);
-      }
+      height: $footer-height-xs;
     }
   }
 
   .wrapper {
-    padding-bottom: $footer-height - $footer-offset-height;
+    padding-bottom: $footer-height-xs - $footer-offset-height-xs;
+  }
+  
+  @media only screen and (min-width: $break-small) {
+    footer {
+      height: $footer-height-s - $footer-offset-height-s;
+
+      &:hover {
+        height: $footer-height-s;
+      }
+    }
+
+    .wrapper {
+      padding-bottom: $footer-height-s - $footer-offset-height-s;
+    }
+  }
+
+  @media only screen and (min-width: $break-medium) {
+    footer {
+      height: $footer-height-m - $footer-offset-height-m;
+
+      &:hover {
+        height: $footer-height-m;
+      }
+    }
+
+    .wrapper {
+      padding-bottom: $footer-height-m - $footer-offset-height-m;
+    }
   }
 }

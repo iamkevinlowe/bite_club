@@ -1,10 +1,11 @@
 @mixin card {
-  margin: 0 $element-margin;
-  margin-bottom: $element-margin;
+  padding: 0 $element-spacing;
+  padding-bottom: $element-spacing;
+  margin: 0 auto;
+  max-width: $break-large;
 
   .card {
     @include aspect-ratio(1, 1);
-    text-shadow: 1px 1px 10px $black-dark;
     
     background-color: $black-dark;
     background-size: cover;
@@ -30,19 +31,14 @@ body.notouch {
   }
 }
 
-.cards {
+.landing-cards {
   @include card;
 
   .content {
     @include center-content;
     text-align: center;
-    font-size: 2rem;
-    font-family: $rock-salt;
+    font-size: $font-size-landing-cards;
     font-weight: bold;
-
-    @media screen and (max-width: $mobile-max-width) {
-      font-size: 1.5rem;
-    }
   }
 }
 
@@ -55,28 +51,15 @@ body.notouch {
     padding: 0 15px;
 
     .restaurant-main {
-      font-size: 2rem;
+      font-size: $font-size-list-cards-main;
       font-weight: bold;
     }
 
     .restaurant-sub {
-      font-size: 1.5rem;
+      font-size: $font-size-list-cards-sub;
 
       .neighborhood-name {
         font-weight: bold;
-      }
-    }
-  }
-
-  @media screen and (max-width: $mobile-max-width) {
-    .list-content {
-      .restaurant-main {
-        font-size: 1.5rem;
-        margin-bottom: 0;
-      }
-
-      .restaurant-sub {
-        font-size: 1.125rem;
       }
     }
   }

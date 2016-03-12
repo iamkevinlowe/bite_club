@@ -20,4 +20,8 @@ class Restaurant < ActiveRecord::Base
     end
     ""
   end
+
+  def reservations
+    self[:reservations] ? 'Yes' : 'No'
+  end
 end

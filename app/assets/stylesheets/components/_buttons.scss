@@ -7,9 +7,9 @@
   @include transition(color ease-in-out 0.25s);
   @include transition(background-color ease-in-out 0.25s);
 
-  margin: 0 10px;
-  padding: 6px 20px;
-  font-size: 1.8rem;
+  margin: 0 4px;
+  padding: 6px 10px;
+  font-size: $font-size-button;
   border: 1px solid $white-dark;
   border-radius: 4px;
 
@@ -17,10 +17,16 @@
     outline: none;
   }
 
-  @media screen and (max-width: $mobile-max-width) {
-    margin: 0 4px;
-    padding: 6px 12px;
-    font-size: 1.4rem;
+  @media only screen and (min-width: $break-small) {
+    font-size: $font-size-button * $scale-s;
+  }
+
+  @media only screen and (min-width: $break-medium) {
+    font-size: $font-size-button * $scale-s;
+  }
+
+  @media only screen and (min-width: $break-large) {
+    font-size: $font-size-button * $scale-m;
   }
 }
 

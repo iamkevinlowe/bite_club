@@ -3,9 +3,8 @@
 
   .hero {
     position: relative;
-    height: 100vh;
+    height: 80vh;
     min-height: 480px;
-    margin-bottom: $element-margin;
     overflow: hidden;
 
     .hero-image {
@@ -21,37 +20,82 @@
       top: 50%;
       @include transform(translateY(-50%));
       text-align: center;
-      @include text-shadow(1px 1px 10px, $black-dark);
+      @include text-shadow(3px 3px 15px, $black-dark);
 
       .main {
         color: $white-base;
-        font-size: 11rem;
-        font-family: $rock-salt;
+        font-family: $font-header;
+        font-size: $font-size-hero-heading-main;
       }
 
       .sub {
         color: $white-base;
-        font-size: 3.5rem;
+        font-size: $font-size-hero-heading-sub;
       }
 
-      @media screen and (max-width: $mobile-max-width) {
+      @media only screen and (min-width: $break-small) {
         .main {
-          font-size: 8.25rem;
+          font-size: $font-size-hero-heading-main * $scale-s;
         }
 
         .sub {
-          font-size: 2.625rem;
+          font-size: $font-size-hero-heading-sub * $scale-s;
+        }
+      }
+
+      @media only screen and (min-width: $break-medium) {
+        .main {
+          font-size: $font-size-hero-heading-main * $scale-m;
+        }
+
+        .sub {
+          font-size: $font-size-hero-heading-sub * $scale-m;
+        }
+      }
+
+      @media only screen and (min-width: $break-large) {
+        .main {
+          font-size: $font-size-hero-heading-main * $scale-l;
+        }
+
+        .sub {
+          font-size: $font-size-hero-heading-sub * $scale-l;
         }
       }
     }
   }
 
-  .filters {
-    text-align: center;
-    margin-bottom: $element-margin;
+  .nav-filters {
+    position: relative;
+    top: 0;
+    left: 50%;
+    @include transform(translateX(-50%));
 
-    @media screen and (max-width: $mobile-max-width) {
-      margin: 30px auto;
+    width: 100%;
+    max-width: $break-large;
+    padding: $element-spacing 0;
+    background-color: $black-base;
+    z-index: 1;
+    @include transition(padding ease-in-out 0.5s);
+
+    @media only screen and (min-width: $break-small) {
+      padding: $element-spacing * $scale-s 0;
+    }
+
+    @media only screen and (min-width: $break-medium) {
+      padding: $element-spacing * $scale-m 0;
+    }
+
+    @media only screen and (min-width: $break-large) {
+      padding: $element-spacing * $scale-l 0;
+    }
+
+    .filters {
+      text-align: right;
+      
+      .button-filter:nth-last-child(1) {
+        margin-right: $element-spacing;
+      }
     }
   }
 }

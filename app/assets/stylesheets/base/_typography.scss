@@ -1,11 +1,12 @@
 @import url(https://fonts.googleapis.com/css?family=Rock+Salt);
+@import url(https://fonts.googleapis.com/css?family=Lato);
 
-$rock-salt: "Rock Salt", cursive;
-$lato: "Lato";
+$font-header: Rock Salt, Cursive;
+$font-base: Lato, Helvetica, sans-serif;
 
 body, a {
   color: $white-base;
-  font-family: $lato;
+  font-family: $font-base;
 }
 
 a, button {

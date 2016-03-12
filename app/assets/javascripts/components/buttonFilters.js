@@ -1,48 +1,59 @@
-$(document).on('page:change', function() {
-  var buttonElements = document.getElementsByClassName('button-filter');
+$(function() {
+  var $navFiltersElement = $('.nav-filters');
 
-  if (buttonElements.length < 1) return;
+  if ($navFiltersElement.length < 1) return;
+
+  var $buttonElements = $('.button-filter');
+  var $cardsElement = $('.landing-cards');
+  var $heroElement = $('.hero');
+  var $logoElement = $('.logo');
+  var filterElementPadding = parseInt($navFiltersElement.css('paddingTop'));
+  var scrolling = false;
+
+  setup();
+
+  function buttonClickHandler(event) {
+    event.preventDefault();
+
+    setButtonActiveClass(this);
+    displayListTypes(this.dataset.filter);
+  }
 
   function displayListTypes(type) {
-    var allCards = document.querySelectorAll("[data-type]");
+    var $allCards = $('[data-type]');
 
     if (type == 'all') {
-      for (var i = 0; i < allCards.length; i++) {
-        allCards[i].style.display = 'block';
-      }
+      $allCards.css('display', 'block');
     } else {
-      var showCards = document.querySelectorAll("[data-type='" + type + "']");
-      var hideCards = [];
+      var $showCards = $("[data-type='" + type + "']");
+      var $hideCards = $allCards.not($showCards);
 
-      for (var i = 0; i < allCards.length; i++) {
-        if (Array.prototype.indexOf.call(showCards, allCards[i]) < 0) {
-          hideCards.push(allCards[i]);
-        }
-      }
-
-      for (var i = 0; i < showCards.length; i++) {
-        showCards[i].style.display = 'block';
-      }
-
-      for (var i = 0; i < hideCards.length; i++) {
-        hideCards[i].style.display = 'none';
-      }
+      $showCards.css('display', 'block');
+      $hideCards.css('display', 'none');
     }
   }
 
   function setButtonActiveClass(elem) {
-    for (var i = 0; i < buttonElements.length; i++) {
-      buttonElements[i].classList.remove('active');
-    }
-    elem.classList.add('active');
+    $buttonElements.removeClass('active');
+    $(elem).addClass('active');
   }
 
-  for (var i = 0; i < buttonElements.length; i++) {
-    buttonElements[i].addEventListener('click', function(event) {
-      event.preventDefault();
-      
-      setButtonActiveClass(this);
-      displayListTypes(this.dataset.filter);
-    });
+  function setFixedPosition() {
+    if (app.getScrollPosition() > $heroElement.height()) {
+      $logoElement.css('opacity', 1);
+      $navFiltersElement.css('padding', filterElementPadding - 15 + "px " + 0);
+      $navFiltersElement.css('position', 'fixed');
+      $cardsElement.css('marginTop', $navFiltersElement.css('height'));
+    } else {
+      $logoElement.css('opacity', 0);
+      $navFiltersElement.css('padding', filterElementPadding + "px " + 0);
+      $navFiltersElement.css('position', 'relative');
+      $cardsElement.css('marginTop', 0);
+    }
+  }
+
+  function setup() {
+    $buttonElements.click(buttonClickHandler);
+    $(window).scroll(setFixedPosition);
   }
 });

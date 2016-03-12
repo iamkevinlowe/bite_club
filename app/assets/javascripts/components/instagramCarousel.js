@@ -1,31 +1,22 @@
-$(document).on('page:change', function() {
+$(function() {
   var $instagramCarouselElement = $('.carousel-instagram');
 
   if ($instagramCarouselElement.length < 1) return;
 
+  var $instagramCarouselFullscreenElement = $('.carousel-instagram-fullscreen');
   var instagramMedia = [];
   var instagramGroupSize = 6;
-  var instagramTotalSize = 18;
-  var owl = {};
+  var instagramTotalSize = 6; // Limit to 6 for now
+  var owl_multi = {};
+  var owl_full = {};
 
-  function addClickHandlers() {
-    var instagramElements = document.getElementsByClassName('instagram-image');
+  setup();
 
-    for (var i = 0; i < instagramElements.length; i++) {
-      instagramElements[i].addEventListener('click', function(event) {
-        owl.stop();
-
-        if (event.currentTarget.requestFullscreen) {
-          event.currentTarget.requestFullscreen();
-        } else if (event.currentTarget.msRequestFullscreen) {
-          event.currentTarget.msRequestFullscreen();
-        } else if (event.currentTarget.mozRequestFullScreen) {
-          event.currentTarget.mozRequestFullScreen();
-        } else if (event.currentTarget.webkitRequestFullscreen) {
-          event.currentTarget.webkitRequestFullscreen();
-        }
-      });
-    }
+  function fullscreenHandler(event) {
+    setActivePagination(this.dataset.index);
+    setCarouselIndex(this.dataset.index);
+    $('.instagram-fullscreen').css('opacity', 1);
+    $('.instagram-fullscreen').css('pointer-events', 'all');
   }
 
   function getInstagramMedia(maxId) {
@@ -37,34 +28,68 @@ $(document).on('page:change', function() {
       dataType: 'JSON'
     }).done(function(response) {
       instagramMedia = instagramMedia.concat(response.media);
-      insertInstagramGroupElement(response.media);
+      owl_multi.addItem(makeInstagramGroupElement(response.media));
+      response.media.forEach(function(item) {
+        owl_full.addItem(makeInstagramElement(item, 'instagram-image-full'));
+      });
 
       if (instagramMedia.length < instagramTotalSize && response.max_id) {
         getInstagramMedia(response.max_id);
       } else {
-        // addClickHandlers();
+        $('.instagram-image').click(fullscreenHandler);
       }
     });
   }
 
-  function insertInstagramGroupElement(media) {
+  function makeInstagramElement(item, instagramClass) {
+    if (typeof instagramClass == 'undefined') instagramClass = 'instagram-image';
+
+    return "<div " +
+      "class='carousel-image " + instagramClass + "' " +
+      "style='background-image: url(" + item + ");' " +
+      "data-index='" + instagramMedia.indexOf(item) + "'></div>";
+  }
+
+  function makeInstagramGroupElement(items) {
     var group = "<div class='group'>";
 
-    media.forEach(function(item) {
-      group += "<div class='carousel-image instagram-image' style='background-image: url(" + item + ");'></div>";
+    items.forEach(function(item) {
+      group += makeInstagramElement(item);
     });
 
     group += "</div>";
 
-    owl.addItem(group);
+    return group;
   }
 
-  $instagramCarouselElement.owlCarousel({
-    autoPlay: true,
-    singleItem: true
-  });
+  function setActivePagination(index) {
+    $instagramCarouselFullscreenElement.find('.owl-page').removeClass('active');
+    $instagramCarouselFullscreenElement.find('.owl-page')[index].classList.add('active');
+  }
 
-  owl = $instagramCarouselElement.data('owlCarousel');
-  
-  getInstagramMedia();
+  function setCarouselIndex(index) {
+    var xPosition = "-" + index * $instagramCarouselFullscreenElement.find('.owl-item').width() + "px";
+    app.setTranslate3DTransform($instagramCarouselFullscreenElement.find('.owl-wrapper'), xPosition, 0, 0);
+  }
+
+  function setup() {
+    $instagramCarouselElement.owlCarousel({
+      autoPlay: true,
+      singleItem: true
+    });
+
+    $instagramCarouselFullscreenElement.owlCarousel({
+      singleItem: true
+    });
+
+    owl_multi = $instagramCarouselElement.data('owlCarousel');
+    owl_full = $instagramCarouselFullscreenElement.data('owlCarousel');
+    
+    getInstagramMedia();
+
+    $('.back-arrow').click(function() {
+      $('.instagram-fullscreen').css('opacity', 0);
+      $('.instagram-fullscreen').css('pointer-events', 'none');
+    });
+  }
 });

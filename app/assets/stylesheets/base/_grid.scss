@@ -1,109 +1,258 @@
-@mixin grid($col) {
+@mixin columns($col) {
   width: percentage($col);
   float: left;
   position: relative;
   min-height: 1px;
-  
-  @media screen and (max-width: $mobile-max-width) {
-    margin-left: 0;
-  }
 }
 
 .grid {
   @include clearfix;
 
   .eighth {
-    @include grid(1/8);
+    @extend .eighth-xs;
+    @extend .eighth-s;
+    @extend .eighth-m;
+    @extend .eighth-l;
   }
   .sixth {
-    @include grid(1/6);
+    @extend .sixth-xs;
+    @extend .sixth-s;
+    @extend .sixth-m;
+    @extend .sixth-l;
   }
   .fourth {
-    @include grid(1/4);
+    @extend .fourth-xs;
+    @extend .fourth-s;
+    @extend .fourth-m;
+    @extend .fourth-l;
   }
   .third {
-    @include grid(1/3);
+    @extend .third-xs;
+    @extend .third-s;
+    @extend .third-m;
+    @extend .third-l;
   }
   .half {
-    @include grid(1/2);
+    @extend .half-xs;
+    @extend .half-s;
+    @extend .half-m;
+    @extend .half-l;
   }
   .two-thirds {
-    @include grid(2/3);
+    @extend .two-thirds-xs;
+    @extend .two-thirds-s;
+    @extend .two-thirds-m;
+    @extend .two-thirds-l;
   }
   .three-fourths {
-    @include grid(3/4);
+    @extend .three-fourths-xs;
+    @extend .three-fourths-s;
+    @extend .three-fourths-m;
+    @extend .three-fourths-l;
   }
   .full {
-    @include grid(1/1);
-  }
-  
-  .offset-eighth {
-    margin-left: percentage(1/8);
-  }
-  .offset-sixth {
-    margin-left: percentage(1/6);
-  }
-  .offset-fourth {
-    margin-left: percentage(1/4);
-  }
-  .offset-third {
-    margin-left: percentage(1/3);
-  }
-  .offset-half {
-    margin-left: percentage(1/2);
-  }
-  .offset-two-thirds {
-    margin-left: percentage(2/3);
-  }
-  .offset-three-fourths {
-    margin-left: percentage(3/4);
+    @extend .full-xs;
+    @extend .full-s;
+    @extend .full-m;
+    @extend .full-l;
   }
 
-  @media screen and (max-width: $mobile-max-width) {
-    .eighth-mobile {
-      @include grid(1/8);
+  // X-Small Screens
+  @media only screen {
+    .eighth-xs {
+      @include columns(1/8);
     }
-    .sixth-mobile {
-      @include grid(1/6);
+    .sixth-xs {
+      @include columns(1/6);
     }
-    .fourth-mobile {
-      @include grid(1/4);
+    .fourth-xs {
+      @include columns(1/4);
     }
-    .third-mobile {
-      @include grid(1/3);
+    .third-xs {
+      @include columns(1/3);
     }
-    .half-mobile {
-      @include grid(1/2);
+    .half-xs {
+      @include columns(1/2);
     }
-    .two-thirds-mobile {
-      @include grid(2/3);
+    .two-thirds-xs {
+      @include columns(2/3);
     }
-    .three-fourths-mobile {
-      @include grid(3/4);
+    .three-fourths-xs {
+      @include columns(3/4);
     }
-    .full-mobile {
-      @include grid(1/1);
+    .full-xs {
+      @include columns(1/1);
     }
-  
-    .offset-eighth-mobile {
+    
+    .offset-eighth-xs {
       margin-left: percentage(1/8);
     }
-    .offset-sixth-mobile {
+    .offset-sixth-xs {
       margin-left: percentage(1/6);
     }
-    .offset-fourth-mobile {
+    .offset-fourth-xs {
       margin-left: percentage(1/4);
     }
-    .offset-third-mobile {
+    .offset-third-xs {
       margin-left: percentage(1/3);
     }
-    .offset-half-mobile {
+    .offset-half-xs {
       margin-left: percentage(1/2);
     }
-    .offset-two-thirds-mobile {
+    .offset-two-thirds-xs {
       margin-left: percentage(2/3);
     }
-    .offset-three-fourths-mobile {
+    .offset-three-fourths-xs {
+      margin-left: percentage(3/4);
+    }
+  }
+
+  // Small Screens
+  @media only screen and (min-width: $break-small) {
+    .eighth-s {
+      @include columns(1/8);
+    }
+    .sixth-s {
+      @include columns(1/6);
+    }
+    .fourth-s {
+      @include columns(1/4);
+    }
+    .third-s {
+      @include columns(1/3);
+    }
+    .half-s {
+      @include columns(1/2);
+    }
+    .two-thirds-s {
+      @include columns(2/3);
+    }
+    .three-fourths-s {
+      @include columns(3/4);
+    }
+    .full-s {
+      @include columns(1/1);
+    }
+    
+    .offset-eighth-s {
+      margin-left: percentage(1/8);
+    }
+    .offset-sixth-s {
+      margin-left: percentage(1/6);
+    }
+    .offset-fourth-s {
+      margin-left: percentage(1/4);
+    }
+    .offset-third-s {
+      margin-left: percentage(1/3);
+    }
+    .offset-half-s {
+      margin-left: percentage(1/2);
+    }
+    .offset-two-thirds-s {
+      margin-left: percentage(2/3);
+    }
+    .offset-three-fourths-s {
+      margin-left: percentage(3/4);
+    }
+  }
+
+  // Medium Screens
+  @media only screen and (min-width: $break-medium) {
+    .eighth-m {
+      @include columns(1/8);
+    }
+    .sixth-m {
+      @include columns(1/6);
+    }
+    .fourth-m {
+      @include columns(1/4);
+    }
+    .third-m {
+      @include columns(1/3);
+    }
+    .half-m {
+      @include columns(1/2);
+    }
+    .two-thirds-m {
+      @include columns(2/3);
+    }
+    .three-fourths-m {
+      @include columns(3/4);
+    }
+    .full-m {
+      @include columns(1/1);
+    }
+  
+    .offset-eighth-m {
+      margin-left: percentage(1/8);
+    }
+    .offset-sixth-m {
+      margin-left: percentage(1/6);
+    }
+    .offset-fourth-m {
+      margin-left: percentage(1/4);
+    }
+    .offset-third-m {
+      margin-left: percentage(1/3);
+    }
+    .offset-half-m {
+      margin-left: percentage(1/2);
+    }
+    .offset-two-thirds-m {
+      margin-left: percentage(2/3);
+    }
+    .offset-three-fourths-m {
+      margin-left: percentage(3/4);
+    }
+  }
+
+  // Large Screens
+  @media only screen and (min-width: $break-large) {
+    .eighth-l {
+      @include columns(1/8);
+    }
+    .sixth-l {
+      @include columns(1/6);
+    }
+    .fourth-l {
+      @include columns(1/4);
+    }
+    .third-l {
+      @include columns(1/3);
+    }
+    .half-l {
+      @include columns(1/2);
+    }
+    .two-thirds-l {
+      @include columns(2/3);
+    }
+    .three-fourths-l {
+      @include columns(3/4);
+    }
+    .full-l {
+      @include columns(1/1);
+    }
+    
+    .offset-eighth-l {
+      margin-left: percentage(1/8);
+    }
+    .offset-sixth-l {
+      margin-left: percentage(1/6);
+    }
+    .offset-fourth-l {
+      margin-left: percentage(1/4);
+    }
+    .offset-third-l {
+      margin-left: percentage(1/3);
+    }
+    .offset-half-l {
+      margin-left: percentage(1/2);
+    }
+    .offset-two-thirds-l {
+      margin-left: percentage(2/3);
+    }
+    .offset-three-fourths-l {
       margin-left: percentage(3/4);
     }
   }
