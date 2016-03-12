@@ -6,7 +6,7 @@ $(function() {
   var $instagramCarouselFullscreenElement = $('.carousel-instagram-fullscreen');
   var instagramMedia = [];
   var instagramGroupSize = 6;
-  var instagramTotalSize = 6; // Limit to 6 for now
+  var instagramTotalSize = 18;
   var owl_multi = {};
   var owl_full = {};
 
