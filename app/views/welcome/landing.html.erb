@@ -20,7 +20,7 @@
         <%= button_tag "Neighborhood", class: 'button-filter', data: { filter: 'neighborhood' } %>
       </div>
 
-      <div class="fb-share-button" data-href="http://localhost.com" data-layout="button"></div>
+      <%= content_tag(:div, nil, class: 'fb-share-button', data: { href: request.original_url, layout: 'button' }) %>
     </div>
   </div>
 

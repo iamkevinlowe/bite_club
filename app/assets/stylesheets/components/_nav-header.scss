@@ -1,7 +1,10 @@
 .nav-header {
   position: fixed;
   top: 0;
+  left: 50%;
+  @include transform(translateX(-50%));
   width: 100%;
+  max-width: $break-large;
   z-index: 1;
   margin-bottom: $element-spacing;
   background-color: $black-base;
@@ -16,6 +19,7 @@
   }
 
   .fb-share {
+    text-align: right;
     position: absolute;
     right: $element-spacing;
     top: calc(50% - 5px);
