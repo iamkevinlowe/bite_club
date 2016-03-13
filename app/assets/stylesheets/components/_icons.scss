@@ -23,8 +23,10 @@
 
 .nav-filters {
   .logo {
-    text-align: left;
-    padding-left: $element-spacing;
+    position: absolute;
+    left: $element-spacing;
+    top: 50%;
+    @include transform(translateY(-50%));
     opacity: 0;
     @include transition(opacity ease-in-out 0.5s);
 

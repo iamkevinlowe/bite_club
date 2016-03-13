@@ -15,6 +15,13 @@
     margin: 15px 0;
   }
 
+  .fb-share {
+    position: absolute;
+    right: $element-spacing;
+    top: calc(50% - 5px);
+    @include transform(translateY(-50%));
+  }
+
   @media only screen and (min-width: $break-small) {
     font-size: $font-size-nav-header * $scale-s;
   }

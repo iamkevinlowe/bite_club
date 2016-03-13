@@ -1,13 +1,15 @@
-$(document).on('ready', function() {
-  var mapElement = document.querySelector('#map');
-  var yelpElements = document.querySelectorAll('.yelp');
+$(function() {
+  var $mapElement = $('#map');
+  var $yelpElements = $('.yelp');
 
-  if (!mapElement || yelpElements.length < 1) return;
+  if ($mapElement.length < 1 || $yelpElements.length < 1) return;
 
   var yelpData = null;
 
+  setup();
+
   function drawMap() {
-    var map = new google.maps.Map(mapElement, {
+    var map = new google.maps.Map($mapElement[0], {
       center: yelpData.coordinate,
       zoom: 14
     });
@@ -20,10 +22,9 @@ $(document).on('ready', function() {
   }
 
   function fillYelp() {
-    for (var i = 0; i < yelpElements.length; i++) {
-      yelpElement = yelpElements[i];
-      yelpElement.innerHTML = yelpStrings(yelpElement.dataset.yelp);
-    }
+    $yelpElements.each(function(index, element) {
+      element.innerHTML = yelpStrings(element.dataset.yelp);
+    });
   }
 
   function yelpStrings(data) {
@@ -31,31 +32,30 @@ $(document).on('ready', function() {
       case 'rating-url':
         return "<img src='" + yelpData.rating_url + "' alt='Yelp Rating'>";
         break;
-      case 'phone-mobile':
-        return "<a href='" + yelpData.phone_mobile + "'>" + yelpData.phone + "</a>";
-        break;
       case 'phone':
-        return yelpData.phone;
+        return "<span>" + yelpData.phone + "</span>";
         break;
       case 'address':
-        return yelpData.address;
+        return "<span>" + yelpData.address + "</span>";
         break;
       default:
         console.log('Error: ' + data + ' is out of bounds.');
     }
   }
 
-  $.ajax({
-    method: 'GET',
-    url: '/api' + location.pathname + '/yelp',
-    dataType: 'JSON'
-  }).done(function(response) {
-    if (response) {
-      yelpData = response;
-      drawMap();
-      fillYelp();
-    } else {
-      mapElement.style.display = 'none';
-    }
-  });
+  function setup() {
+    $.ajax({
+      method: 'GET',
+      url: '/api' + location.pathname + '/yelp',
+      dataType: 'JSON'
+    }).done(function(response) {
+      if (response) {
+        yelpData = response;
+        drawMap();
+        fillYelp();
+      } else {
+        $mapElement.css('display', 'none');
+      }
+    });
+  }
 });

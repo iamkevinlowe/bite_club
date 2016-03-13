@@ -7,8 +7,8 @@
   @include transition(color ease-in-out 0.25s);
   @include transition(background-color ease-in-out 0.25s);
 
-  margin: 0 4px;
-  padding: 6px 10px;
+  margin: 0 1.4px;
+  padding: 4px 5px;
   font-size: $font-size-button;
   border: 1px solid $white-dark;
   border-radius: 4px;
@@ -19,14 +19,20 @@
 
   @media only screen and (min-width: $break-small) {
     font-size: $font-size-button * $scale-s;
+    margin: 0 1.4px * $scale-s;
+    padding: 4px * $scale-s 5px * $scale-s;
   }
 
   @media only screen and (min-width: $break-medium) {
     font-size: $font-size-button * $scale-s;
+    margin: 0 1.4px * $scale-s;
+    padding: 4px * $scale-s 5px * $scale-s;
   }
 
   @media only screen and (min-width: $break-large) {
-    font-size: $font-size-button * $scale-m;
+    font-size: $font-size-button * $scale-sm;
+    margin: 0 1.4px * $scale-m;
+    padding: 4px * $scale-m 5px * $scale-m;
   }
 }
 
@@ -45,6 +51,6 @@
 .button-footer{
   @include button;
 
-  color: $black-base;
-  background-color: $white-dark;
+  color: $white-dark;
+  background-color: $black-dark;
 }

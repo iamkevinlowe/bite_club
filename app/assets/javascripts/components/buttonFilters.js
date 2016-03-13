@@ -8,6 +8,7 @@ $(function() {
   var $heroElement = $('.hero');
   var $logoElement = $('.logo');
   var filterElementPadding = parseInt($navFiltersElement.css('paddingTop'));
+  var filterElementPaddingScale = 0.5;
   var scrolling = false;
 
   setup();
@@ -40,15 +41,19 @@ $(function() {
 
   function setFixedPosition() {
     if (app.getScrollPosition() > $heroElement.height()) {
-      $logoElement.css('opacity', 1);
-      $navFiltersElement.css('padding', filterElementPadding - 15 + "px " + 0);
-      $navFiltersElement.css('position', 'fixed');
       $cardsElement.css('marginTop', $navFiltersElement.css('height'));
+      $logoElement.css('opacity', 1);
+      $navFiltersElement.css({
+        'padding': filterElementPadding * filterElementPaddingScale + "px " + 0,
+        'position': 'fixed'
+      });
     } else {
-      $logoElement.css('opacity', 0);
-      $navFiltersElement.css('padding', filterElementPadding + "px " + 0);
-      $navFiltersElement.css('position', 'relative');
       $cardsElement.css('marginTop', 0);
+      $logoElement.css('opacity', 0);
+      $navFiltersElement.css({
+        'padding': filterElementPadding + "px " + 0,
+        'position': 'relative'
+      });
     }
   }
 

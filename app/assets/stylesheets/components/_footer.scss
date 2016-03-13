@@ -1,11 +1,8 @@
-$footer-height-xs: 157px;
-$footer-offset-height-xs: 113px;
+$footer-height-xs: 78px;
+$footer-offset-height-xs: 46px;
 
-$footer-height-s: 85px;
-$footer-offset-height-s: 43px;
-
-$footer-height-m: 93px;
-$footer-offset-height-m: 43px;
+$footer-height-m: 85px;
+$footer-offset-height-m: 51px;
 
 footer {
   position: absolute;
@@ -22,27 +19,28 @@ footer {
   .heading {
     font-size: $font-size-footer-heading;
     white-space: nowrap;
-    margin: 11px 0;
+    margin: 6px 0;
+  }
 
-    @media only screen and (min-width: $break-small) {
-      font-size: $font-size-footer-heading - 0.2;
+  .sub-heading {
+    font-size: $font-size-footer-sub-heading;
+  }
+
+  @media only screen and (min-width: $break-medium) {
+    .heading {
+      font-size: $font-size-footer-heading * $scale-s;
     }
 
-    @media only screen and (min-width: $break-medium) {
-      font-size: $font-size-footer-heading + 0.4;
+    .sub-heading {
+      font-size: $font-size-footer-sub-heading * $scale-s;
     }
   }
 }
 
+// Reserves bottom space of body for fixed full height of footer.
 body {
   .wrapper {
     padding-bottom: $footer-height-xs;
-  }
-
-  @media only screen and (min-width: $break-small) {
-    .wrapper {
-      padding-bottom: $footer-height-s;
-    }
   }
 
   @media only screen and (min-width: $break-medium) {
@@ -52,6 +50,7 @@ body {
   }
 }
 
+// Reserves bottom space of body for docked height of footer.
 body.notouch {
   footer {
     height: $footer-height-xs - $footer-offset-height-xs;
@@ -63,20 +62,6 @@ body.notouch {
 
   .wrapper {
     padding-bottom: $footer-height-xs - $footer-offset-height-xs;
-  }
-  
-  @media only screen and (min-width: $break-small) {
-    footer {
-      height: $footer-height-s - $footer-offset-height-s;
-
-      &:hover {
-        height: $footer-height-s;
-      }
-    }
-
-    .wrapper {
-      padding-bottom: $footer-height-s - $footer-offset-height-s;
-    }
   }
 
   @media only screen and (min-width: $break-medium) {

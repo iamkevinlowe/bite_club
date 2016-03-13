@@ -33,9 +33,6 @@ gem 'yelp', '2.0.5', require: 'yelp'
 # Use Instagram API for restaurant carousel
 gem 'instagram'
 
-# Use Browser gem for device detection
-gem 'browser'
-
 # Use Owl Carousel
 gem 'owlcarousel-rails'
 

@@ -91,11 +91,14 @@
     }
 
     .filters {
-      text-align: right;
-      
-      .button-filter:nth-last-child(1) {
-        margin-right: $element-spacing;
-      }
+      text-align: center;
     }
+
+    .fb-share-button {
+      position: absolute;
+      right: $element-spacing;
+      top: 50%;
+      @include transform(translateY(-50%));
+    }      
   }
 }

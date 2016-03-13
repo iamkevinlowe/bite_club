@@ -1,17 +1,15 @@
 <nav class="grid nav-header">
-  <div class="eighth">
-    <div class="logo">
-      <%= link_to :root do %>
-        <%= inline_svg('logo1') %>
-      <% end %>
-    </div>
+  <div class="eighth logo">
+    <%= link_to inline_svg('logo1'), :root %>
   </div>
 
-  <div class="three-fourths">
+  <div class="three-fourths content">
     <% if local_assigns[:resource] && resource.respond_to?(:name) %>
-      <div class="content">
-        <span class="list-name"><%= resource.name %></span>
-      </div>
+      <%= content_tag(:span, resource.name, class: 'list-name') %>
     <% end %>
+  </div>
+
+  <div class="eighth fb-share">
+    <%= content_tag(:div, nil, class: 'fb-share-button', data: { href: request.original_url, layout: 'button' }) %>
   </div>
 </nav>

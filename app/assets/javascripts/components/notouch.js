@@ -1,9 +1,9 @@
-$(document).on('ready', function() {
-  var body = document.getElementsByTagName('body')[0];
+$(function() {
+  var $body = $('body');
 
   if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-    body.classList.remove('notouch');
+    $body.removeClass('notouch');
   } else {
-    body.classList.add('notouch');
+    $body.addClass('notouch');
   }
 });

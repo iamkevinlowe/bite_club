@@ -39,7 +39,6 @@ GEM
     airtable (0.0.8)
       httparty
     arel (6.0.3)
-    browser (2.0.2)
     builder (3.2.2)
     coderay (1.1.1)
     concurrent-ruby (1.0.1)
@@ -167,7 +166,6 @@ PLATFORMS
 
 DEPENDENCIES
   airtable
-  browser
   figaro
   instagram
   jbuilder (~> 2.0)

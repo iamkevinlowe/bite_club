@@ -16,11 +16,7 @@
         <%= content_tag(:li, @restaurant.description, class: 'restaurant-description') %>
         <%= content_tag(:li, nil, class: 'yelp', data: { yelp: 'rating-url' }) %>
         <%= content_tag(:li, "Reservations: #{@restaurant.reservations}", class: 'restaurant-reservations') %>
-        <% if browser.device.mobile? %>
-          <%= content_tag(:li, nil, class: 'yelp', data: { yelp: 'phone-mobile' }) %>
-        <% else %>
-          <%= content_tag(:li, nil, class: 'yelp', data: { yelp: 'phone' }) %>
-        <% end %>
+        <%= content_tag(:li, nil, class: 'yelp', data: { yelp: 'phone' }) %>
         <%= content_tag(:li, nil, class: 'yelp', data: { yelp: 'address' }) %>
       </ul>
 
@@ -36,7 +32,7 @@
   </div>
 
   <div class="grid instagram-fullscreen">
-    <div class="back-arrow">
+    <div class="exit-icon">
       <%= inline_svg('exit') %>
     </div>
 

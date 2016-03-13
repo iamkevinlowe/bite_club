@@ -8,14 +8,19 @@
   </div>
 
   <div class="grid nav-filters">
-    <div class="fourth logo">
-      <%= inline_svg('logo2') %>
-    </div>
-    <div class="three-fourths filters">
-      <%= button_tag "All", class: 'button-filter', data: { filter: 'all' } %>
-      <%= button_tag "Theme", class: 'button-filter', data: { filter: 'list' } %>
-      <%= button_tag "Cuisine", class: 'button-filter', data: { filter: 'cuisine' } %>
-      <%= button_tag "Neighborhood", class: 'button-filter', data: { filter: 'neighborhood' } %>
+    <div class="full">
+      <div class="logo">
+        <%= inline_svg('logo2') %>
+      </div>
+
+      <div class="filters">
+        <%= button_tag "All", class: 'button-filter', data: { filter: 'all' } %>
+        <%= button_tag "Theme", class: 'button-filter', data: { filter: 'list' } %>
+        <%= button_tag "Cuisine", class: 'button-filter', data: { filter: 'cuisine' } %>
+        <%= button_tag "Neighborhood", class: 'button-filter', data: { filter: 'neighborhood' } %>
+      </div>
+
+      <div class="fb-share-button" data-href="http://localhost.com" data-layout="button"></div>
     </div>
   </div>
 
