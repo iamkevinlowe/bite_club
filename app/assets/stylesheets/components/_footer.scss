@@ -35,6 +35,10 @@ footer {
       font-size: $font-size-footer-sub-heading * $scale-s;
     }
   }
+
+  .fb-like {
+    overflow: hidden;
+  }
 }
 
 // Reserves bottom space of body for fixed full height of footer.
