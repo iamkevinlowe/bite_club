@@ -2,12 +2,13 @@
 <html>
 <head>
   <title>Bite Club</title>
+  <link rel="icon" type="image/png" href="/favicon.png">
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=#{ENV['google_api_key']}" %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/png" href="/favicon.png">
+  <%= yield :meta_tags if content_for?(:meta_tags) %>
 </head>
 <body class="<%= controller_name %> <%= action_name %>">
   <!-- Facebook like/share script -->

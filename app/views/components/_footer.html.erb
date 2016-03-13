@@ -3,7 +3,11 @@
     <div class="half">
       <p class="heading">Like what you see?</p>
       <p class="sub-heading">Like us on Facebook to stay updated.</p>
-      <%= content_tag(:div, nil, class: 'fb-like', data: { href: request.base_url, width: '50px', layout: 'button', action: 'like', 'show-faces': true }) %>
+      <% if request.fullpath == '/' %>
+        <%= content_tag(:div, nil, class: 'fb-like', data: { href: request.base_url, width: '50px', layout: 'button', action: 'like', 'show-faces': true }) %>
+      <% else %>
+      <%= content_tag(:div, nil, class: 'fb-like', data: { href: request.original_url, width: '50px', layout: 'button', action: 'like', 'show-faces': true }) %>
+      <% end %>
     </div>
     <div class="half">
       <p class="heading">Questions or Comments?</p>

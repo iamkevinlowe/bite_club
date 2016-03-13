@@ -89,7 +89,7 @@ $(function() {
     owl_multi = $instagramCarouselElement.data('owlCarousel');
     owl_full = $instagramCarouselFullscreenElement.data('owlCarousel');
     
-    // getInstagramMedia();
+    getInstagramMedia();
 
     $('.exit-icon').click(exitFullscreenHandler);
   }

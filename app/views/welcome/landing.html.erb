@@ -20,7 +20,7 @@
         <%= button_tag "Neighborhood", class: 'button-filter', data: { filter: 'neighborhood' } %>
       </div>
 
-      <%= content_tag(:div, nil, class: 'fb-share-button', data: { href: request.original_url, layout: 'button' }) %>
+      <%= content_tag(:div, nil, class: 'fb-share-button', data: { href: request.base_url, layout: 'button' }) %>
     </div>
   </div>
 
@@ -37,3 +37,7 @@
     <% end %>
   </div>
 </section>
+
+<% content_for :meta_tags do %>
+  <%= fb_meta_tags %>
+<% end %>

@@ -41,3 +41,7 @@
     </div>
   </div>
 </section>
+
+<% content_for :meta_tags do %>
+  <%= fb_meta_tags(@restaurant) %>
+<% end %>
